@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أخبار المكتب - المحمدي لأعمال المحاماة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Noto Kufi Arabic", sans-serif;
+    }
+
+    body {
+      background-color: #0a1a2a;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(10, 26, 42, 0.95);
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 2px solid #c8a44d;
+    }
+
+    header h1 {
+      color: #c8a44d;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 10%;
+    }
+
+    .news-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(200, 164, 77, 0.5);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(200, 164, 77, 0.1);
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(200, 164, 77, 0.2);
+    }
+
+    .news-card i {
+      width: 50px;
+      height: 50px;
+      color: #c8a44d;
+      margin-bottom: 15px;
+    }
+
+    .news-card h3 {
+      color: #c8a44d;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .news-card p {
+      color: #ddd;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .read-more {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #c8a44d;
+      color: #c8a44d;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .read-more:hover {
+      background: #c8a44d;
+      color: #0a1a2a;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 40px auto 60px;
+      padding: 10px 25px;
+      border-radius: 25px;
+      background: #c8a44d;
+      color: #0a1a2a;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #b08f3c;
+    }
+
+    /* نافذة عرض الخبر */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-content {
+  background: #10243b;
+  border: 2px solid #c8a44d;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh; /* السماح بحد أقصى للارتفاع */
+  overflow-y: auto;  /* يجعل المحتوى قابل للتمرير عموديًا */
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.popup-content h2 {
+  color: #c8a44d;
+  margin-bottom: 20px;
+}
+
+.popup-content p {
+  line-height: 1.8;
+  color: #ddd;
+  text-align: justify;
+}
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: rgba(200, 164, 77, 0.3);
+      color: #c8a44d;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      background: rgba(200, 164, 77, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>أخبار المكتب</h1>
+    <p>تابع آخر مستجدات مكتب المحمدي لأعمال المحاماة ⚖️</p>
+  </header>
+
+  <div class="news-container">
+    <div class="news-card">
+      <i data-lucide="award"></i>
+      <h3>افتتاح الفرع الاول للمكتب</h3>
+      <p>في إطار التوسع المستمر لخدمة عملائنا، يعلن مكتب المحمدي عن افتتاح فرعه الاول بمدينة ...</p>
+      <a href="#" class="read-more" data-news="1">قراءة المزيد</a>
+    </div>
+
+    <div class="news-card">
+      <i data-lucide="book-open"></i>
+      <h3> ندوة الانطلاقة القانونية لمكتب المحمدي</h3>
+      <p>اعلن أعضاء مكتب المحمدي عن تنظيم ندوة الافتتاح الاولي للمكتب ب...</p>
+      <a href="#" class="read-more" data-news="3">قراءة المزيد</a>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">⬅ الرجوع للصفحة الرئيسية</a>
+
+  <!-- نافذة عرض التفاصيل -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-btn" id="closePopup">&times;</button>
+      <h2 id="popupTitle"></h2>
+      <p id="popupText"></p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const newsDetails = {
+      1: {
+        title: "افتتاح فرع جديد للمكتب",
+        text: "يسرّ مكتب المحمدي لأعمال المحاماة أن يعلن عن افتتاح فرعه الاول بمحافظة القاهرة قسم المعصره منطقة الدواجن شارع البستان، وذلك ضمن خطة التوسع لخدمة قاعدة أكبر من عملائنا الكرام ، يهدف المكتب من خلالها إلي تقديم خدمات قانوينة متكاملة بسرعة وكفاءة أعلي لكي ننال رضا العملاء وكسب ثقتهم الغالية بتاريخ: ١ - ١ - ٢٠٢٦ ميلادياً ، والموافق: الثاني عشر من رجب لسنة ١٤٤٧ هجرياً."
+      },
+      3: {
+        title: " ✨ نـــدوة افتتاح مكتب المحمدي لأعمال المحاماة ✨",
+        text: "يسرنا أن نعلن عن إقامة ندوة افتتاح المقر الأول لمكتب المحمدي للمحاماة، وذلك في أجواء يسودها الترحيب والتعاون القانوني المثمر.🔹 التاريخ: يوم الاثنين الموافق ١ يناير ٢٠٢٦ ميلادياً🔹 الموافق: الثاني عشر من شهر رجب لعام ١٤٤٧ هجرياً🔹 المكان: مقر المكتب الكائن بـ القاهرة – قسم المعصرة – منطقة الدواجن – شارع البستان🎤 تتناول الندوة التعريف برسالة مكتب المحمدي ورؤيته القانونية، وأبرز الخدمات القانونية التي يقدمها في مختلف فروع القانون، نسعد بتشريفكم وحضوركم الكريم في هذا الحدث المميز، ومشاركتنا انطلاقتنا نحو مستقبل من العدالة والخبرة القانونية الرفيعة. مكتب المحمدي لأعمال المحاماة — نحو قانون يخدم العدالة والحق —"
+      }
+    };
+
+    const popup = document.getElementById("popup");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupText = document.getElementById("popupText");
+    const closePopup = document.getElementById("closePopup");
+
+    document.querySelectorAll(".read-more").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = btn.getAttribute("data-news");
+        popupTitle.textContent = newsDetails[id].title;
+        popupText.textContent = newsDetails[id].text;
+        popup.style.display = "flex";
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+  </script>
+</body>
+</html>

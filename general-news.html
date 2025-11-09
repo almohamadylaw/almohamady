@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أخبار عامة - المحمدي لأعمال المحاماة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Noto Kufi Arabic", sans-serif;
+    }
+
+    body {
+      background-color: #0a1a2a;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(10, 26, 42, 0.95);
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 2px solid #c8a44d;
+    }
+
+    header h1 {
+      color: #c8a44d;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 10%;
+    }
+
+    .news-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(200, 164, 77, 0.5);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(200, 164, 77, 0.1);
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(200, 164, 77, 0.2);
+    }
+
+    .news-card i {
+      width: 50px;
+      height: 50px;
+      color: #c8a44d;
+      margin-bottom: 15px;
+    }
+
+    .news-card h3 {
+      color: #c8a44d;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .news-card p {
+      color: #ddd;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .read-more {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #c8a44d;
+      color: #c8a44d;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .read-more:hover {
+      background: #c8a44d;
+      color: #0a1a2a;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 40px auto 60px;
+      padding: 10px 25px;
+      border-radius: 25px;
+      background: #c8a44d;
+      color: #0a1a2a;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #b08f3c;
+    }
+
+    /* نافذة عرض الخبر */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background: #10243b;
+      border: 2px solid #c8a44d;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      width: 90%;
+      color: #fff;
+      position: relative;
+      max-height: 80vh; /* عشان المربع ما يخرجش من الشاشة */
+      overflow-y: auto; /* تفعيل التمرير لو النص طويل */
+    }
+
+    .popup-content h2 {
+      color: #c8a44d;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .popup-content p {
+      line-height: 1.8;
+      color: #ddd;
+      text-align: justify;
+      white-space: pre-line; /* يحافظ على تنسيق الأسطر */
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: rgba(200, 164, 77, 0.3);
+      color: #c8a44d;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      background: rgba(200, 164, 77, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>أخبار عامة</h1>
+    <p>آخر المستجدات القانونية والقرارات الجديدة في ساحة العدالة ⚖️</p>
+  </header>
+
+
+    <div class="news-card">
+      <i data-lucide="book-open"></i>
+      <h3>سورة النساء الآية:٥٧</h3>
+      <p>وَالَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَنُدْخِلُهُمْ جَنَّاتٍ...</p>
+      <a href="#" class="read-more" data-news="1">قراءة المزيد</a>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">⬅ الرجوع للصفحة الرئيسية</a>
+
+  <!-- نافذة عرض التفاصيل -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-btn" id="closePopup">&times;</button>
+      <h2 id="popupTitle"></h2>
+      <p id="popupText"></p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const newsDetails = {
+      1: {
+        title: "سورة النساء الآية: ٥٧ - ٥٩",
+        text: " وَالَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَنُدْخِلُهُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا ۖ لَّهُمْ فِيهَا أَزْوَاجٌ مُّطَهَّرَةٌ ۖ وَنُدْخِلُهُمْ ظِلًّا ظَلِيلًا (57) ۞ إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا وَإِذَا حَكَمْتُم بَيْنَ النَّاسِ أَن تَحْكُمُوا بِالْعَدْلِ ۚ إِنَّ اللَّهَ نِعِمَّا يَعِظُكُم بِهِ ۗ إِنَّ اللَّهَ كَانَ سَمِيعًا بَصِيرًا (58) يَا أَيُّهَا الَّذِينَ آمَنُوا أَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَأُولِي الْأَمْرِ مِنكُمْ ۖ فَإِن تَنَازَعْتُمْ فِي شَيْءٍ فَرُدُّوهُ إِلَى اللَّهِ وَالرَّسُولِ إِن كُنتُمْ تُؤْمِنُونَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ ۚ ذَٰلِكَ خَيْرٌ وَأَحْسَنُ تَأْوِيلًا (59)"
+      }
+    };
+
+    const popup = document.getElementById("popup");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupText = document.getElementById("popupText");
+    const closePopup = document.getElementById("closePopup");
+
+    document.querySelectorAll(".read-more").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = btn.getAttribute("data-news");
+        popupTitle.textContent = newsDetails[id].title;
+        popupText.textContent = newsDetails[id].text;
+        popup.style.display = "flex";
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+  </script>
+</body>
+</html>
