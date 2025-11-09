@@ -175,11 +175,11 @@ text-shadow: 0 0 8px rgba(0,0,0,0.5)
     }
 
     .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
+  display: flex;
+  flex-direction: column; /* كل العناصر فوق بعض دائمًا */
+  align-items: center;    /* لتوسيطها أفقياً */
+  gap: 20px;              /* المسافة بين العناصر */
+}
 
     .info-item {
       display: flex;
