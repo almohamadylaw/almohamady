@@ -42,7 +42,7 @@
     }
 
     header img {
-      height: 270px;
+      height: 250px;
       margin-bottom: 10px;
     }
 
@@ -50,7 +50,7 @@ header h1 {
 background: linear-gradient(90deg, #c8a44d, #e6c268);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 3.6rem;
+  font-size: 3rem;
   font-weight: 700;
   font-family: "Reem Kufi Ink", sans-serif !important;
   letter-spacing: 1px;
@@ -450,11 +450,34 @@ header h1 {
   font-size: 1.2rem; /* 🔹 عدّل الرقم لتكبير أو تصغير النص */
   color: #fff;
   line-height: 2; /* تباعد مريح بين البنود */
-  margin-top: 1px;
+  margin-top: 20px;
   text-align: center;
 }
-    .move-down {
+.move-down {
   margin-top: 120px; /* 🔹 تقدر تزود الرقم لو عايز تنزل أكتر */
+}
+.gold-separator {
+  border: none;
+  height: 1px;  /* سمك الخط */
+  background: linear-gradient(to right, #c8a44d, #ffdb70, #c8a44d);
+  width: 50%;   /* عرض الخط */
+  margin: 0.5px auto; /* مسافة من الأعلى والأسفل */
+  border-radius: 2px;
+  opacity: 0.9;
+}
+.hero-buttons {
+  display: flex;
+  flex-direction: row;      /* جنب بعض افتراضيًا */
+  gap: 20px;                /* مسافة بين الزرين */
+  justify-content: center;  /* توسيط */
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column; /* فوق بعض على الهاتف */
+    gap: 15px;              /* مسافة عمودية أقل */
+  }
 }
   </style>
 </head>
@@ -478,12 +501,14 @@ header h1 {
   🔹 الأحوال الشخصية.<br>
   🔹 القانون الإداري.<br>
 </div>
-    <button class="btn" id="openForm">احجز استشارتك الآن</button>
-    <!-- زر الكارنيه -->
-<button class="btn" id="openLawyerCard" style="background:#bfa14a;">اطلب كارنيه المحامي</button>
-      </div>
+<div class="hero-buttons">
+  <button class="btn" id="openForm">احجز استشارتك الآن</button>
+  <button class="btn" id="openLawyerCard" style="background:#bfa14a;">اطلب كارنيه المحامي</button>
+</div>
+</div>
   </section>
-
+  
+  <hr class="gold-separator">
   <section class="about">
     <h3>AL-Mohamady Law Group ⚖</h3>
     <p>مكتب المحمدي من المكاتب الرائدة في تقديم الاستشارات القانونية وتمثيل العملاء أمام الجهات القضائية والإدارية بمهنية عالية وخبرة ممتدة...</p>
@@ -505,7 +530,7 @@ header h1 {
   </section>
 
   <section class="contact">
-    <h3>للتواصل ️...</h3>
+    <h3>للتواصل ...</h3>
     <div class="contact-info">
 
       <!-- رقم الهاتف -->
@@ -609,7 +634,7 @@ header h1 {
   <div class="popup-content" style="max-width:400px;">
     <button class="close-btn" id="closeCard">×</button>
     <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (****)">
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري ()">
     <button id="checkPassword">ادخال</button>
     <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
     <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
@@ -793,7 +818,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       // ❌ الكود خطأ
       attempts++;
-      attemptMessage.textContent = `كلمة المرور غير صحيحة ❌ (محاولة ${attempts})`;
+      attemptMessage.textContent = كلمة المرور غير صحيحة ❌ (محاولة ${attempts});
 
       if (attempts === 3) {
         lockTime = 30;
@@ -809,11 +834,11 @@ document.addEventListener('DOMContentLoaded', function () {
     locked = true;
     passwordInput.disabled = true;
     checkPassword.disabled = true;
-    timerMessage.textContent = `محاولة جديدة بعد ${lockTime} ثانية`;
+    timerMessage.textContent = محاولة جديدة بعد ${lockTime} ثانية;
 
     timer = setInterval(() => {
       lockTime--;
-      timerMessage.textContent = `محاولة جديدة بعد ${lockTime} ثانية`;
+      timerMessage.textContent = محاولة جديدة بعد ${lockTime} ثانية;
 
       if (lockTime <= 0) {
         clearInterval(timer);
