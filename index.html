@@ -410,7 +410,7 @@ header h1 {
   width: 70px; /* 🔸 حجم أكبر قليلاً وواضح */
   height: 70px;
   background: radial-gradient(circle at center, #ffff 0%, #d4af37 60%, #b98c1e 100%);
-  border: 3px solid #; /* إطار كحلي أنيق */
+  border: 3px solid #rgba(10, 26, 42, 0.7); /* إطار كحلي أنيق */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -479,6 +479,118 @@ header h1 {
     gap: 15px;              /* مسافة عمودية أقل */
   }
 }
+/* 🌟 تصميم البنود القابلة للفتح والإغلاق */
+.service-item {
+  border-bottom: 1px solid #ffffff50; /* خط أبيض شفاف */
+  padding: 15px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.service-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.service-title {
+  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem);
+  color: #f5f5f5;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.service-item.active .service-title {
+  color: #c8a44d; /* ذهبي عند الفتح */
+}
+
+.service-details {
+  display: none;
+  font-size: clamp(0.9rem, 1vw + 0.3rem, 1.1rem);
+  color: #dddddd;
+  line-height: 1.8;
+  margin-top: 10px;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.service-item.active .service-details {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 👇 تعديل طول القسم الشفاف */
+.transparent-section,
+.about-section {
+  min-height: auto; /* يتيح الطول يتكيف مع المحتوى */
+  height: auto !important;
+  padding-bottom: 100px; /* يضمن مساحة كافية تحت الزر */
+  position: relative;
+  z-index: 2;
+}
+
+/* خلي الخلفية الشفافة تغطي كامل المحتوى */
+.transparent-section::before,
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08); /* الشفافية اللي عندك */
+  z-index: -1;
+}
+@media (max-width: 768px) {
+  .transparent-section,
+  .about-section {
+    padding-top: 80px;
+    padding-bottom: 120px; /* يزود المساحة السفلية */
+  }
+
+  .transparent-section .btn,
+  .about-section .btn {
+    margin-bottom: 30px; /* مسافة تحت الزر */
+  }
+}
+.transparent-section,
+.about-section {
+  position: relative;
+  height: auto;
+  min-height: 100vh; /* تغطي الشاشة بالكامل على الأقل */
+  padding-top: 100px;
+  padding-bottom: 150px; /* مساحة كافية تحت الأزرار */
+  overflow: hidden; /* تمنع النص أو الأزرار يخرجوا برّه */
+  z-index: 2;
+}
+/* ===== تعديل طول وسلوك القسم الشفاف (القسم اللي فيه الفقرات + الأزرار) ===== */
+/* في الكود الحالي القسم الشفاف اللي كتبته هو .hero */
+.hero {
+  height: auto !important;      /* يتكيف مع المحتوى */
+  min-height: 100vh;            /* يغطي شاشة الجهاز على الأقل — تقدر تقلل لو مش عايز */
+  padding-top: 40px;            /* المسافة من فوق (عدل حسب الذوق) */
+  padding-bottom: 160px;        /* مساحة كافية تحت الأزرار حتى على الموبايل */
+  position: relative;
+  z-index: 2;
+  overflow: hidden;             /* يمنع النص/الأزرار من النزول فوق الخلفية اللي تحتها */
+}
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;       /* ممكن تزوده لو تحب */
+    padding-bottom: 220px;   /* مساحة إضافية في الموبايل لضمان عدم التداخل */
+  }
+
+  /* لو الأزرار محتاجة مسافة إضافية تحتها */
+  .hero .hero-buttons {
+    gap: 18px;
+  }
+
+  .hero .btn {
+    width: 90%;            /* يخلي الأزرار أعرض وأسهل للضغط على الموبايل */
+    max-width: 420px;
+    margin: 0 auto;
+    display: block;
+  }
+}
   </style>
 </head>
 <body>
@@ -493,13 +605,54 @@ header h1 {
     <h2>نصنع العدالة ونحمي الحقوق</h2>
     <p>مكتب المحمدي للمحاماة يقدم خدمات قانونية متكاملة باحترافية ومصداقية عالية في جميع المجالات</p>
 <div class="services-list">
-  🔹 التحكيم وتسوية المنازعات.<br>
-  🔹 القضايا التجارية والعقارية.<br>
-  🔹 القضايا المدنية والجنائية.<br>
-  🔹 صياغة العقود ومراجعتها.<br>
-  🔹 الاستشارات القانونية.<br>
-  🔹 الأحوال الشخصية.<br>
-  🔹 القانون الإداري.<br>
+  <div class="service-item">
+    <div class="service-title">🔹 التحكيم وتسوية المنازعات</div>
+    <div class="service-details">
+      نقوم بتمثيل العملاء في إجراءات التحكيم التجاري وتسوية المنازعات بطرق ودّية أو قانونية لضمان أفضل النتائج.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 القضايا التجارية والعقارية</div>
+    <div class="service-details">
+      نقدم استشارات شاملة في النزاعات التجارية والعقارية وصياغة العقود لضمان حقوق الأطراف.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 القضايا المدنية والجنائية</div>
+    <div class="service-details">
+      نتابع جميع القضايا أمام المحاكم بكفاءة عالية سواء كانت مدنية أو جنائية لضمان العدالة لعملائنا.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 صياغة العقود ومراجعتها</div>
+    <div class="service-details">
+      نضمن صياغة عقود دقيقة وواضحة تحمي مصالح عملائنا وتقلل من النزاعات المستقبلية.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 الاستشارات القانونية</div>
+    <div class="service-details">
+      نقدم استشارات قانونية دقيقة في مختلف المجالات القانونية لضمان اتخاذ القرارات الصائبة.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 الأحوال الشخصية</div>
+    <div class="service-details">
+      خدماتنا تشمل القضايا الأسرية مثل الطلاق والنفقة والحضانة بمهنية وسرية تامة.
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-title">🔹 القانون الإداري</div>
+    <div class="service-details">
+      نُمثل العملاء أمام الجهات الحكومية والإدارية ونتابع قضايا التعويض والطعن في القرارات الإدارية.
+    </div>
+  </div>
 </div>
 <div class="hero-buttons">
   <button class="btn" id="openForm">احجز استشارتك الآن</button>
@@ -633,7 +786,7 @@ header h1 {
   <div class="popup-content" style="max-width:400px;">
     <button class="close-btn" id="closeCard">×</button>
     <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (***)">
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">
     <button id="checkPassword">ادخال</button>
     <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
     <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
@@ -802,8 +955,7 @@ document.addEventListener('DOMContentLoaded', function () {
     lawyerCardPopup.classList.remove('open');
   });
 
-  // تحقق من الكود السري
-  checkPassword.addEventListener('click', () => {
+checkPassword.addEventListener('click', () => {
     if (locked) return;
 
     if (passwordInput.value === '00000') {
@@ -845,9 +997,12 @@ document.addEventListener('DOMContentLoaded', function () {
         passwordInput.disabled = false;
         checkPassword.disabled = false;
         timerMessage.textContent = '';
+        attemptMessage.textContent = '';
+        attempts = 0;
       }
     }, 1000);
   }
+});
 
   // منع أخذ لقطة شاشة
   document.addEventListener('keydown', (e) => {
@@ -858,6 +1013,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   document.addEventListener('contextmenu', e => e.preventDefault());
 ;
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const serviceItems = document.querySelectorAll('.service-item');
+
+  serviceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // إغلاق أي عنصر آخر مفتوح
+      serviceItems.forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+
+      // تبديل العنصر الحالي
+      item.classList.toggle('active');
+    });
+  });
+});
 </script>
 </body>
 </html>
