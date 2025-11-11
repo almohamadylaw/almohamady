@@ -591,14 +591,15 @@ header h1 {
     display: block;
   }
 }
-#lawyerCardPopup.open {
-  display: flex !important;
-  z-index: 9999;
-}
 #openLawyerCard {
   position: relative;
-  z-index: 9999 !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
 }
+#cardPopup, #lawyerCardPopup {
+  z-index: 999999 !important;
+}
+
   </style>
 </head>
 <body>
@@ -1029,6 +1030,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-</script>
+</script>;
+<script>
+  document.getElementById("openLawyerCard").addEventListener("click", function() {
+  const popup = document.getElementById("cardPopup");
+  if (popup) {
+    popup.classList.add("open");
+    console.log("✅ نافذة الكارنيه فُتحت");
+  } else {
+    console.error("❌ لم يتم العثور على cardPopup");
+  }
+});
+</script>;
 </body>
 </html>
