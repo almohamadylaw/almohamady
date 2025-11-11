@@ -1007,15 +1007,6 @@ checkPassword.addEventListener('click', () => {
     }, 1000);
   }
 });
-
-  // منع أخذ لقطة شاشة
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'PrintScreen') {
-      e.preventDefault();
-      alert('❌ غير مسموح بأخذ لقطة شاشة');
-    }
-  });
-  document.addEventListener('contextmenu', e => e.preventDefault());
 ;
 </script>
 <script>
