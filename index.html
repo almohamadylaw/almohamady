@@ -591,14 +591,15 @@ header h1 {
     display: block;
   }
 }
-#lawyerCardPopup.open {
-  display: flex !important;
-  z-index: 9999;
-}
 #openLawyerCard {
   position: relative;
-  z-index: 9999 !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
 }
+#cardPopup, #lawyerCardPopup {
+  z-index: 999999 !important;
+}
+
   </style>
 </head>
 <body>
@@ -924,95 +925,7 @@ document.getElementById('consultForm').addEventListener('submit', async function
     lucide.createIcons();
   });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const openCardBtn = document.getElementById('openLawyerCard');
-  const cardPopup = document.getElementById('cardPopup');
-  const closeCard = document.getElementById('closeCard');
-  const checkPassword = document.getElementById('checkPassword');
-  const passwordInput = document.getElementById('cardPassword');
-  const attemptMessage = document.getElementById('attemptMessage');
-  const timerMessage = document.getElementById('timerMessage');
-  const lawyerCardPopup = document.getElementById('lawyerCardPopup');
-  const closeLawyerCard = document.getElementById('closeLawyerCard');
 
-  let attempts = 0;
-  let locked = false;
-  let lockTime = 0;
-  let timer;
-
-// فتح نافذة إدخال الكود السري (زر الكارنيه فقط)
-  openCardBtn.addEventListener('click', () => {
-    if (!locked) {
-      cardPopup.classList.add('open');
-    } else {
-      alert('النافذة مؤقتًا غير متاحة، يرجى الانتظار ⏳');
-    }
-  });
-
-  // غلق نافذة الكود
-  closeCard.addEventListener('click', () => {
-    cardPopup.classList.remove('open');
-    passwordInput.value = '';
-    attemptMessage.textContent = '';
-    timerMessage.textContent = '';
-  });
-
-  // غلق نافذة الكارنيه
-  closeLawyerCard.addEventListener('click', () => {
-    lawyerCardPopup.classList.remove('open');
-  });
-
-checkPassword.addEventListener('click', () => {
-    if (locked) return;
-
-    if (passwordInput.value === '00000') {
-      // ✅ الكود صحيح
-      cardPopup.classList.remove('open');
-      lawyerCardPopup.classList.add('open');
-      passwordInput.value = '';
-      attemptMessage.textContent = '';
-      timerMessage.textContent = '';
-      attempts = 0;
-    } else {
-      // ❌ الكود خطأ
-      attempts++;
-      attemptMessage.textContent = كلمة المرور غير صحيحة ❌ (محاولة ${attempts});
-
-      if (attempts === 3) {
-        lockTime = 30;
-        startLock();
-      } else if (attempts >= 4) {
-        lockTime = 60;
-        startLock();
-      }
-    }
-  });
-
-  function startLock() {
-    locked = true;
-    passwordInput.disabled = true;
-    checkPassword.disabled = true;
-    timerMessage.textContent = محاولة جديدة بعد ${lockTime} ثانية;
-
-    timer = setInterval(() => {
-      lockTime--;
-      timerMessage.textContent = محاولة جديدة بعد ${lockTime} ثانية;
-
-      if (lockTime <= 0) {
-        clearInterval(timer);
-        locked = false;
-        passwordInput.disabled = false;
-        checkPassword.disabled = false;
-        timerMessage.textContent = '';
-        attemptMessage.textContent = '';
-        attempts = 0;
-      }
-    }, 1000);
-  }
-});
-;
-</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const serviceItems = document.querySelectorAll('.service-item');
@@ -1027,6 +940,85 @@ document.addEventListener('DOMContentLoaded', () => {
       // تبديل العنصر الحالي
       item.classList.toggle('active');
     });
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const openCardBtn = document.getElementById("openLawyerCard");
+  const cardPopup = document.getElementById("cardPopup");
+  const passwordInput = document.getElementById("cardPassword");
+  const passwordEnter = document.getElementById("checkPassword");
+  const passwordClose = document.getElementById("closeCard");
+  const lawyerCardPopup = document.getElementById("lawyerCardPopup");
+  const closeLawyerCard = document.getElementById("closeLawyerCard");
+  const attemptMessage = document.getElementById("attemptMessage");
+  const timerMessage = document.getElementById("timerMessage");
+
+  let attempts = 0;
+  let lockTime = 30000; // 30 ثانية
+  let isLocked = false;
+
+  openCardBtn.addEventListener("click", function() {
+    cardPopup.classList.add("open");
+    passwordInput.value = "";
+    attemptMessage.textContent = "";
+    timerMessage.textContent = "";
+  });
+
+  passwordClose.addEventListener("click", function() {
+    cardPopup.classList.remove("open");
+    attempts = 0;
+    isLocked = false;
+    passwordInput.disabled = false;
+    attemptMessage.textContent = "";
+    timerMessage.textContent = "";
+  });
+
+  passwordEnter.addEventListener("click", function() {
+    if (isLocked) return; // منع الإدخال أثناء القفل
+
+    const password = passwordInput.value.trim();
+    if (password === "00000") {
+      attempts = 0;
+      cardPopup.classList.remove("open");
+      lawyerCardPopup.classList.add("open");
+      passwordInput.value = "";
+      attemptMessage.textContent = "";
+      timerMessage.textContent = "";
+    } else {
+      attempts++;
+      attemptMessage.textContent = ❌ كلمة المرور غير صحيحة! (${attempts});
+
+      if (attempts >= 3) {
+        isLocked = true;
+        passwordInput.disabled = true;
+        let remaining = 30;
+        timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
+
+        const countdown = setInterval(() => {
+          remaining--;
+          timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
+          if (remaining <= 0) {
+            clearInterval(countdown);
+            passwordInput.disabled = false;
+            isLocked = false;
+            attempts = 0; // إعادة العد بعد انتهاء القفل
+            timerMessage.textContent = "";
+            attemptMessage.textContent = "";
+            passwordInput.value = "";
+            passwordInput.focus();
+          }
+        }, 1000);
+      } else {
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    }
+  });
+
+  closeLawyerCard.addEventListener("click", function() {
+    lawyerCardPopup.classList.remove("open");
   });
 });
 </script>
