@@ -795,7 +795,7 @@ header h1 {
   <div class="popup-content" style="max-width:400px;">
     <button class="close-btn" id="closeCard">×</button>
     <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري ()">
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">
     <button id="checkPassword">ادخال</button>
     <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
     <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
@@ -942,7 +942,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-</script>
+</script>;
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const openCardBtn = document.getElementById("openLawyerCard");
@@ -979,7 +979,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (isLocked) return; // منع الإدخال أثناء القفل
 
     const password = passwordInput.value.trim();
-    if (password === "000") {
+    if (password === "00000") {
       attempts = 0;
       cardPopup.classList.remove("open");
       lawyerCardPopup.classList.add("open");
