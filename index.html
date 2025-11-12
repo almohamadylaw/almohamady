@@ -410,7 +410,7 @@ header h1 {
   width: 70px; /* 🔸 حجم أكبر قليلاً وواضح */
   height: 70px;
   background: radial-gradient(circle at center, #ffff 0%, #d4af37 60%, #b98c1e 100%);
-  border: 3px solid #rgba(10, 26, 42, 0.7); /* إطار كحلي أنيق */
+  border: 3px solid rgba(10, 26, 42, 0.7); /* إطار كحلي أنيق */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -795,7 +795,7 @@ header h1 {
   <div class="popup-content" style="max-width:400px;">
     <button class="close-btn" id="closeCard">×</button>
     <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري ()">
     <button id="checkPassword">ادخال</button>
     <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
     <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
@@ -979,7 +979,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (isLocked) return; // منع الإدخال أثناء القفل
 
     const password = passwordInput.value.trim();
-    if (password === "00000") {
+    if (password === "2002") {
       attempts = 0;
       cardPopup.classList.remove("open");
       lawyerCardPopup.classList.add("open");
