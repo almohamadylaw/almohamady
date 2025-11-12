@@ -942,44 +942,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-</script>;
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-
   const openCardBtn = document.getElementById("openLawyerCard");
   const cardPopup = document.getElementById("cardPopup");
-  const passwordInput = document.getElementById("cardPassword"); // صححت الاسم
-  const passwordEnter = document.getElementById("checkPassword"); // صححت الاسم
-  const passwordClose = document.getElementById("closeCard"); // صححت الاسم
+  const passwordInput = document.getElementById("cardPassword");
+  const passwordEnter = document.getElementById("checkPassword");
+  const passwordClose = document.getElementById("closeCard");
   const lawyerCardPopup = document.getElementById("lawyerCardPopup");
   const closeLawyerCard = document.getElementById("closeLawyerCard");
+  const attemptMessage = document.getElementById("attemptMessage");
+  const timerMessage = document.getElementById("timerMessage");
 
-  // لما المستخدم يضغط "اطلب كارنيه المحامي"
+  let attempts = 0;
+  let lockTime = 30000; // 30 ثانية
+  let isLocked = false;
+
   openCardBtn.addEventListener("click", function() {
     cardPopup.classList.add("open");
+    passwordInput.value = "";
+    attemptMessage.textContent = "";
+    timerMessage.textContent = "";
   });
 
-  // لما يضغط × في نافذة الكود السري
   passwordClose.addEventListener("click", function() {
     cardPopup.classList.remove("open");
+    attempts = 0;
+    isLocked = false;
+    passwordInput.disabled = false;
+    attemptMessage.textContent = "";
+    timerMessage.textContent = "";
   });
 
-  // لما يضغط إدخال بعد كتابة الكود
   passwordEnter.addEventListener("click", function() {
+    if (isLocked) return; // منع الإدخال أثناء القفل
+
     const password = passwordInput.value.trim();
     if (password === "00000") {
+      attempts = 0;
       cardPopup.classList.remove("open");
       lawyerCardPopup.classList.add("open");
+      passwordInput.value = "";
+      attemptMessage.textContent = "";
+      timerMessage.textContent = "";
     } else {
-      alert("❌ الكود السري غير صحيح!");
+      attempts++;
+      attemptMessage.textContent = ❌ كلمة المرور غير صحيحة! (${attempts});
+
+      if (attempts >= 3) {
+        isLocked = true;
+        passwordInput.disabled = true;
+        let remaining = 30;
+        timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
+
+        const countdown = setInterval(() => {
+          remaining--;
+          timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
+          if (remaining <= 0) {
+            clearInterval(countdown);
+            passwordInput.disabled = false;
+            isLocked = false;
+            attempts = 0; // إعادة العد بعد انتهاء القفل
+            timerMessage.textContent = "";
+            attemptMessage.textContent = "";
+            passwordInput.value = "";
+            passwordInput.focus();
+          }
+        }, 1000);
+      } else {
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
     }
   });
 
-  // لما يضغط × في نافذة الكارنيه
   closeLawyerCard.addEventListener("click", function() {
     lawyerCardPopup.classList.remove("open");
   });
-
 });
 </script>
 </body>
