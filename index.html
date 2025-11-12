@@ -1,1026 +1,967 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>المحمدي لأعمال المحاماة</title>
+<!DOCTYPE html>  <html lang="ar" dir="rtl">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>المحمدي لأعمال المحاماة</title>    <!-- 🟤 استيراد خط كوفي فاطمي أنيق -->    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&display=swap" rel="stylesheet">    <style>  
+    /* تعريف الخط محليًا (اختياري) */  
+    @font-face {  
+      font-family: 'Reem Kufi Ink';  
+      src: url('fonts/ReemKufiInk-Regular.ttf') format('truetype');  
+      font-weight: normal;  
+      font-style: normal;  
+    }  
   
-  <!-- 🟤 استيراد خط كوفي فاطمي أنيق -->
-  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&display=swap" rel="stylesheet">
-
-  <style>
-    /* تعريف الخط محليًا (اختياري) */
-    @font-face {
-      font-family: 'Reem Kufi Ink';
-      src: url('fonts/ReemKufiInk-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-  background-color: #c8a44d;
-      color: #f5f5f5;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background-color: rgba(10, 26, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 60px;
-      border-bottom: 2px solid #c8a44d;
-      text-align: center;
-    }
-
-    header img {
-      height: 250px;
-      margin-bottom: 10px;
-    }
-
-header h1 {
-background: linear-gradient(90deg, #c8a44d, #e6c268);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 3rem;
-  font-weight: 700;
-  font-family: "Reem Kufi Ink", sans-serif !important;
-  letter-spacing: 1px;
-text-shadow: 0 0 8px rgba(0,0,0,0.5)
-}
-    .hero {
-      position: relative;
-      height: 120vh;
-      background: linear-gradient(rgba(10, 26, 42, 0.9), rgba(10, 26, 42, 0.9)),
-                  url("images/logo.png") center/contain no-repeat fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      color: #c8a44d;
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-
-    @media (max-width: 768px) {
-      .hero h2 {
-        font-size: 2rem;
-        padding: 0 10px;
-      }
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #ddd;
-      max-width: 600px;
-      line-height: 1.8;
-    }
-
-    .btn {
-      margin-top: 30px;
-      padding: 12px 30px;
-      border: 2px solid #c8a44d;
-      background: transparent;
-      color: #c8a44d;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #c8a44d;
-      color: #0a1a2a;
-    }
-
-    .about {
-      padding: 80px 10%;
-      text-align: center;
-      background-color: #10243b;
-    }
-
-    .about h3 {
-      color: #c8a44d;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-.about p {
-  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem); /* 🔹 متجاوب مع كل الشاشات */
-  color: #dddddd;
-  line-height: 1.9;
-  max-width: 850px;
-  margin: 0 auto;
-  text-align: center; /* ✅ يضمن تناسق النص */
-}
-
-    .news {
-      padding: 80px 10%;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      background-color: #0f2238;
-      text-align: center;
-    }
-
-    .news-section {
-      border: 1px solid #c8a44d;
-      border-radius: 20px;
-      padding: 40px 20px;
-      background: rgba(255,255,255,0.03);
-      box-shadow: 0 0 10px rgba(200,164,77,0.15);
-      transition: transform 0.3s ease;
-    }
-
-    .news-section:hover {
-      transform: translateY(-5px);
-    }
-
-    .news-section h4 {
-      color: #c8a44d;
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-    }
-
-    .icon {
-      width: 50px;
-      height: 50px;
-      color: #c8a44d;
-      margin-bottom: 0.01px;
-    }
-
-    .contact {
-      padding: 60px 10%;
-      background-color: #10243b;
-      text-align: center;
-    }
-
-    .contact h3 {
-      color: #c8a44d;
-      font-size: 1.8rem;
-      margin-bottom: 30px;
-    }
-
-    .contact-info {
-  display: flex;
-  flex-direction: column; /* كل العناصر فوق بعض دائمًا */
-  align-items: center;    /* لتوسيطها أفقياً */
-  gap: 20px;              /* المسافة بين العناصر */
-}
-
-    .info-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 280px;
-      color: #ddd;
-    }
-
-    .info-item a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    footer {
-      background-color: #0a1a2a;
-      color: #c8a44d;
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #c8a44d;
-      font-size: 0.9rem;
-    }
-
-    /* نافذة الاستمارة */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    /* ✅ تصحيح: إظهار نافذة الاستشارة عند الضغط على الزر */
-.popup.open {
-  display: flex !important;
-}
-
-    .popup-content {
-      background: #10243b;
-      border: 2px solid #c8a44d;
-      border-radius: 20px;
-      padding: 30px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      position: relative;
-    }
-
-    .popup-content h3 {
-      color: #c8a44d;
-      margin-bottom: 20px;
-    }
-
-    .popup-content input, 
-    .popup-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #c8a44d;
-      background: #0a1a2a;
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    .popup-content button {
-      padding: 10px 20px;
-      border: none;
-      background: #c8a44d;
-      color: #0a1a2a;
-      font-weight: bold;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .popup-content button:hover {
-      background: #b08f3c;
-    }
-
-    .close-btn {
-      background: rgba(200, 164, 77, 0.5);
-      border: none;
-      color: #c8a44d;
-      font-size: 1.2rem;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      border-radius: 50%;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-    }
-
-    .close-btn:hover {
-      background: rgba(200, 164, 77, 0.4);
-    }
-
-    .success {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #0a1a2a;
-      border: 2px solid #0f0;
-      padding: 15px 25px;
-      border-radius: 10px;
-      color: #0f0;
-      font-weight: bold;
-    }
-
-    /* زر التواصل الدائري */
-    .circle-menu {
-      position: fixed;
-      bottom: 25px;
-      left: 25px;
-      width: 60px;
-      height: 60px;
-      z-index: 999;
-    }
-
-    .circle-menu .sub-btn {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: #0a1a2a;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #0a1a2a;
-      transition: all 0.3s ease;
-      transform: scale(0);
-    }
-    .circle-menu .sub-btn i {
-      width: 28px;
-      height: 28px;
-      stroke: #0a1a2a;
-    }
-    .circle-menu .sub-btn:hover {
-      transform: scale(1.2);
-      background: #b9933a;
-    }
-
-    .circle-menu.active .sub-btn:nth-child(2) {
-      transform: translate(0px, -150px) scale(1);
-    }
-    .circle-menu.active .sub-btn:nth-child(3) {
-      transform: translate(45px, -110px) scale(1);
-    }
-    .circle-menu.active .sub-btn:nth-child(4) {
-      transform: translate(70px, -50px) scale(1);
-    }
-    /* ✅ تحسين شكل أيقونات القائمة الدائرية */
-.circle-menu i {
-  width: 28px;
-  height: 28px;
-  stroke-width: 2.5;
-}
-
-/* الأيقونة الرئيسية (علامة الزائد) */
-.circle-menu .main-btn .main-icon {
-  stroke: #0a1a2a;
-  background: #c8a44d;
-  border-radius: 50%;
-  padding: 0.1px;
-  transition: transform 0.3s ease;
-}
-
-/* تأثير بسيط عند تفعيل القائمة */
-.circle-menu.active .main-btn .main-icon {
-  transform: rotate(45deg);
-}
-header {
-  position: relative;
-  z-index: 10;
-}
-header h1 {
-  color: #c8a44d !important;
-}
-/* العنوان الرئيسي */
-.hero h2 {
-  font-size: clamp(1.8rem, 3vw + 1rem, 3.2rem);
-  font-weight: 700;
-  color: #c8a44d;
-  margin-bottom: 1rem;
-}
-
-/* النص الأبيض (نصنع العدالة...) */
-.hero p {
-  font-size: clamp(1rem, 1.5vw + 0.6rem, 1.6rem); /* 🔹 حجم متجاوب ومتناسب أكثر */
-  color: #ffffff;
-  max-width: 750px;
-  margin: 0 auto 1.8rem auto;
-  line-height: 1.9;
-  text-align: center; /* ✅ يضمن التناسق الجمالي في جميع الأجهزة */
-}
-
-/* زر احجز استشارتك الآن */
-.hero .btn {
-  font-size: clamp(1rem, 1.2vw + 0.3rem, 1.3rem);
-  padding: 0.8rem 1.6rem;
-  background-color: #c8a44d;
-  color: #0a1a2a;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.hero .btn:hover {
-  background-color: #e6c268;
-  transform: scale(1.05);
-}
-/* 🌟 الزر الرئيسي للتواصل - تصميم فاخر ذهبي وكحلي */
-.circle-menu .main-btn {
-  width: 70px; /* 🔸 حجم أكبر قليلاً وواضح */
-  height: 70px;
-  background: radial-gradient(circle at center, #ffff 0%, #d4af37 60%, #b98c1e 100%);
-  border: 3px solid #rgba(10, 26, 42, 0.7); /* إطار كحلي أنيق */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-  transition: all 0.35s ease;
-  overflow: hidden;
-}
-
-/* ✨ تأثير عند المرور */
-.circle-menu .main-btn:hover {
-  transform: scale(1.08) rotate(5deg);
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
-  background: radial-gradient(circle at center, #ffec8b 0%, #e6c04d 70%, #c79822 100%);
-}
-
-/* 💌 أيقونة الرسالة */
-.circle-menu .main-icon {
-  width: 36px;             /* 🔹 حجم متناسق تمامًا */
-  height: 36px;
-  stroke: #0a1a2a;         /* كحلي */
-  stroke-width: 2.3;
-  margin: 0;               /* إزالة أي إزاحة داخلية */
-  padding: 0;
-  transform: translateY(0); /* تأكيد تمركزها عموديًا */
-  filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
-  transition: transform 0.3s ease;
-  overflow: visible;        /* ✅ يمنع قصّ أطراف الأيقونة */
-}
-
-/* عند الضغط */
-.circle-menu.active .main-icon {
-  transform: rotate(45deg);
-}
-.services-list {
-  font-size: 1.2rem; /* 🔹 عدّل الرقم لتكبير أو تصغير النص */
-  color: #fff;
-  line-height: 2; /* تباعد مريح بين البنود */
-  margin-top: 20px;
-  text-align: center;
-}
-.move-down {
-  margin-top: 120px; /* 🔹 تقدر تزود الرقم لو عايز تنزل أكتر */
-}
-.gold-separator {
-  border: none;
-  height: 1px;  /* سمك الخط */
-  background: linear-gradient(to right, #c8a44d, #ffdb70, #c8a44d);
-  width: 50%;   /* عرض الخط */
-  margin: 0.5px auto; /* مسافة من الأعلى والأسفل */
-  border-radius: 2px;
-  opacity: 0.9;
-}
-.hero-buttons {
-  display: flex;
-  flex-direction: row;      /* جنب بعض افتراضيًا */
-  gap: 20px;                /* مسافة بين الزرين */
-  justify-content: center;  /* توسيط */
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .hero-buttons {
-    flex-direction: column; /* فوق بعض على الهاتف */
-    gap: 15px;              /* مسافة عمودية أقل */
-  }
-}
-/* 🌟 تصميم البنود القابلة للفتح والإغلاق */
-.service-item {
-  border-bottom: 1px solid #ffffff50; /* خط أبيض شفاف */
-  padding: 15px 0;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.service-item:hover {
-  background: rgba(255,255,255,0.05);
-}
-
-.service-title {
-  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem);
-  color: #f5f5f5;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.service-item.active .service-title {
-  color: #c8a44d; /* ذهبي عند الفتح */
-}
-
-.service-details {
-  display: none;
-  font-size: clamp(0.9rem, 1vw + 0.3rem, 1.1rem);
-  color: #dddddd;
-  line-height: 1.8;
-  margin-top: 10px;
-  text-align: center;
-  animation: fadeIn 0.4s ease;
-}
-
-.service-item.active .service-details {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* 👇 تعديل طول القسم الشفاف */
-.transparent-section,
-.about-section {
-  min-height: auto; /* يتيح الطول يتكيف مع المحتوى */
-  height: auto !important;
-  padding-bottom: 100px; /* يضمن مساحة كافية تحت الزر */
-  position: relative;
-  z-index: 2;
-}
-
-/* خلي الخلفية الشفافة تغطي كامل المحتوى */
-.transparent-section::before,
-.about-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.08); /* الشفافية اللي عندك */
-  z-index: -1;
-}
-@media (max-width: 768px) {
-  .transparent-section,
-  .about-section {
-    padding-top: 80px;
-    padding-bottom: 120px; /* يزود المساحة السفلية */
-  }
-
-  .transparent-section .btn,
-  .about-section .btn {
-    margin-bottom: 30px; /* مسافة تحت الزر */
-  }
-}
-.transparent-section,
-.about-section {
-  position: relative;
-  height: auto;
-  min-height: 100vh; /* تغطي الشاشة بالكامل على الأقل */
-  padding-top: 100px;
-  padding-bottom: 150px; /* مساحة كافية تحت الأزرار */
-  overflow: hidden; /* تمنع النص أو الأزرار يخرجوا برّه */
-  z-index: 2;
-}
-/* ===== تعديل طول وسلوك القسم الشفاف (القسم اللي فيه الفقرات + الأزرار) ===== */
-/* في الكود الحالي القسم الشفاف اللي كتبته هو .hero */
-.hero {
-  height: auto !important;      /* يتكيف مع المحتوى */
-  min-height: 100vh;            /* يغطي شاشة الجهاز على الأقل — تقدر تقلل لو مش عايز */
-  padding-top: 40px;            /* المسافة من فوق (عدل حسب الذوق) */
-  padding-bottom: 160px;        /* مساحة كافية تحت الأزرار حتى على الموبايل */
-  position: relative;
-  z-index: 2;
-  overflow: hidden;             /* يمنع النص/الأزرار من النزول فوق الخلفية اللي تحتها */
-}
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 60px;       /* ممكن تزوده لو تحب */
-    padding-bottom: 220px;   /* مساحة إضافية في الموبايل لضمان عدم التداخل */
-  }
-
-  /* لو الأزرار محتاجة مسافة إضافية تحتها */
-  .hero .hero-buttons {
-    gap: 18px;
-  }
-
-  .hero .btn {
-    width: 90%;            /* يخلي الأزرار أعرض وأسهل للضغط على الموبايل */
-    max-width: 420px;
-    margin: 0 auto;
-    display: block;
-  }
-}
-#openLawyerCard {
-  position: relative;
-  z-index: 99999 !important;
-  pointer-events: auto !important;
-}
-#cardPopup, #lawyerCardPopup {
-  z-index: 999999 !important;
-}
-
-  </style>
-</head>
-<body>
-
-  <header>
-    <img src="images/balance.png" alt="ميزان العدالة">
-<h1>ٱلْمُحَمَّدِيّ لِأَعْمَالِ ٱلْمُحَامَاةِ</h1>
-  </header>
-
-  <section class="hero">
-    <div class="move-down">
-    <h2>نصنع العدالة ونحمي الحقوق</h2>
-    <p>مكتب المحمدي للمحاماة يقدم خدمات قانونية متكاملة باحترافية ومصداقية عالية في جميع المجالات</p>
-<div class="services-list">
-  <div class="service-item">
-    <div class="service-title">🔹 التحكيم وتسوية المنازعات</div>
-    <div class="service-details">
-      نقوم بتمثيل العملاء في إجراءات التحكيم التجاري وتسوية المنازعات بطرق ودّية أو قانونية لضمان أفضل النتائج.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 القضايا التجارية والعقارية</div>
-    <div class="service-details">
-      نقدم استشارات شاملة في النزاعات التجارية والعقارية وصياغة العقود لضمان حقوق الأطراف.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 القضايا المدنية والجنائية</div>
-    <div class="service-details">
-      نتابع جميع القضايا أمام المحاكم بكفاءة عالية سواء كانت مدنية أو جنائية لضمان العدالة لعملائنا.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 صياغة العقود ومراجعتها</div>
-    <div class="service-details">
-      نضمن صياغة عقود دقيقة وواضحة تحمي مصالح عملائنا وتقلل من النزاعات المستقبلية.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 الاستشارات القانونية</div>
-    <div class="service-details">
-      نقدم استشارات قانونية دقيقة في مختلف المجالات القانونية لضمان اتخاذ القرارات الصائبة.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 الأحوال الشخصية</div>
-    <div class="service-details">
-      خدماتنا تشمل القضايا الأسرية مثل الطلاق والنفقة والحضانة بمهنية وسرية تامة.
-    </div>
-  </div>
-
-  <div class="service-item">
-    <div class="service-title">🔹 القانون الإداري</div>
-    <div class="service-details">
-      نُمثل العملاء أمام الجهات الحكومية والإدارية ونتابع قضايا التعويض والطعن في القرارات الإدارية.
-    </div>
-  </div>
-</div>
-<div class="hero-buttons">
-  <button class="btn" id="openForm">احجز استشارتك الآن</button>
-  <button class="btn" id="openLawyerCard" style="background:#bfa14a;">اطلب كارنيه المحامي</button>
-</div>
-</div>
-  </section>
-  <hr class="gold-separator">
-  <section class="about">
-    <h3>AL-Mohamady Law Group ⚖</h3>
-    <p>مكتب المحمدي من المكاتب الرائدة في تقديم الاستشارات القانونية وتمثيل العملاء أمام الجهات القضائية والإدارية بمهنية عالية وخبرة ممتدة...</p>
-    <p> ⚖ من ثقتكم نبدأ . . وإلي عدالتكم نصل ⚖</p>
-  </section>
-
-  <section class="news">
-    <a href="news.html" class="news-section" style="text-decoration:none; color:inherit;">
-      <i data-lucide="briefcase" class="icon"></i>
-      <h4>أخبار المكتب</h4>
-      <p>تابع آخر أخبار مكتب المحمدي، إنجازاتنا، وفعالياتنا القانونية القادمة.</p>
-    </a>
-
-    <a href="general-news.html" class="news-section" style="text-decoration:none; color:inherit;">
-      <i data-lucide="newspaper" class="icon"></i>
-      <h4>أخبار عامة</h4>
-      <p>آخر المستجدات القانونية والقرارات الجديدة في ساحة العدالة.</p>
-    </a>
-  </section>
-
-  <section class="contact">
-    <h3>للتواصل ...</h3>
-    <div class="contact-info">
-
-      <!-- رقم الهاتف -->
-      <div class="info-item">
-        <a href="tel:+201029207323" target="_blank" title="اتصل الآن">
-          <i data-lucide="phone" class="icon"></i>
-        </a>
-        <p>01029207323</p>
-      </div>
-
-      <!-- البريد الإلكتروني -->
-      <div class="info-item">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=al.mohamady2026@gmail.com" target="_blank">
-          <i data-lucide="mail" class="icon"></i>
-        </a>
-        <p>al.mohamady2026@gmail.com</p>
-      </div>
-
-      <!-- موقع المكتب -->
-      <div class="info-item">
-        <a href="https://maps.app.goo.gl/LJR4nVyLqEJkWLmt7?g_st=awb" target="_blank">
-          <i data-lucide="map-pin" class="icon"></i>
-        </a>
-        <p>القاهرة - المعصرة - الدواجن - شارع البستان - خلف مسجد البستان</p>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    جميع الحقوق محفوظة © 2025 - مكتب المحمدي لأعمال المحاماة
-  </footer>
-  <!-- Circle menu -->
-<div class="circle-menu" id="circleMenu" aria-label="قائمة تواصل">
-  <!-- الزر الرئيسي -->
-<div class="main-btn" id="mainBtn" role="button" tabindex="0" aria-expanded="false" aria-controls="circleMenu">
-  <i data-lucide="message-circle" class="main-icon" aria-hidden="true"></i>
-</div>
-
-<!-- واتساب -->
-<a class="sub-btn" href="https://wa.me/2001146126603" target="_blank" rel="noopener" title="واتساب" style="background-color:#25D366;">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
-       alt="واتساب" 
-       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+    }  
+  
+    body {  
+  background-color: #c8a44d;  
+      color: #f5f5f5;  
+      overflow-x: hidden;  
+      scroll-behavior: smooth;  
+    }  
+  
+    header {  
+      background-color: rgba(10, 26, 42, 0.95);  
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      justify-content: center;  
+      padding: 20px 60px;  
+      border-bottom: 2px solid #c8a44d;  
+      text-align: center;  
+    }  
+  
+    header img {  
+      height: 250px;  
+      margin-bottom: 10px;  
+    }  
+  
+header h1 {  
+background: linear-gradient(90deg, #c8a44d, #e6c268);  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+  font-size: 3rem;  
+  font-weight: 700;  
+  font-family: "Reem Kufi Ink", sans-serif !important;  
+  letter-spacing: 1px;  
+text-shadow: 0 0 8px rgba(0,0,0,0.5)  
+}  
+    .hero {  
+      position: relative;  
+      height: 120vh;  
+      background: linear-gradient(rgba(10, 26, 42, 0.9), rgba(10, 26, 42, 0.9)),  
+                  url("images/logo.png") center/contain no-repeat fixed;  
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      justify-content: center;  
+      text-align: center;  
+    }  
+  
+    .hero h2 {  
+      font-size: 2.8rem;  
+      color: #c8a44d;  
+      margin-bottom: 20px;  
+      line-height: 1.4;  
+    }  
+  
+    @media (max-width: 768px) {  
+      .hero h2 {  
+        font-size: 2rem;  
+        padding: 0 10px;  
+      }  
+    }  
+  
+    .hero p {  
+      font-size: 1.2rem;  
+      color: #ddd;  
+      max-width: 600px;  
+      line-height: 1.8;  
+    }  
+  
+    .btn {  
+      margin-top: 30px;  
+      padding: 12px 30px;  
+      border: 2px solid #c8a44d;  
+      background: transparent;  
+      color: #c8a44d;  
+      font-size: 1rem;  
+      border-radius: 30px;  
+      cursor: pointer;  
+      transition: all 0.3s ease;  
+    }  
+  
+    .btn:hover {  
+      background: #c8a44d;  
+      color: #0a1a2a;  
+    }  
+  
+    .about {  
+      padding: 80px 10%;  
+      text-align: center;  
+      background-color: #10243b;  
+    }  
+  
+    .about h3 {  
+      color: #c8a44d;  
+      font-size: 2rem;  
+      margin-bottom: 30px;  
+    }  
+  
+.about p {  
+  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem); /* 🔹 متجاوب مع كل الشاشات */  
+  color: #dddddd;  
+  line-height: 1.9;  
+  max-width: 850px;  
+  margin: 0 auto;  
+  text-align: center; /* ✅ يضمن تناسق النص */  
+}  
+  
+    .news {  
+      padding: 80px 10%;  
+      display: flex;  
+      flex-direction: column;  
+      gap: 50px;  
+      background-color: #0f2238;  
+      text-align: center;  
+    }  
+  
+    .news-section {  
+      border: 1px solid #c8a44d;  
+      border-radius: 20px;  
+      padding: 40px 20px;  
+      background: rgba(255,255,255,0.03);  
+      box-shadow: 0 0 10px rgba(200,164,77,0.15);  
+      transition: transform 0.3s ease;  
+    }  
+  
+    .news-section:hover {  
+      transform: translateY(-5px);  
+    }  
+  
+    .news-section h4 {  
+      color: #c8a44d;  
+      font-size: 1.6rem;  
+      margin-bottom: 20px;  
+    }  
+  
+    .icon {  
+      width: 50px;  
+      height: 50px;  
+      color: #c8a44d;  
+      margin-bottom: 0.01px;  
+    }  
+  
+    .contact {  
+      padding: 60px 10%;  
+      background-color: #10243b;  
+      text-align: center;  
+    }  
+  
+    .contact h3 {  
+      color: #c8a44d;  
+      font-size: 1.8rem;  
+      margin-bottom: 30px;  
+    }  
+  
+    .contact-info {  
+  display: flex;  
+  flex-direction: column; /* كل العناصر فوق بعض دائمًا */  
+  align-items: center;    /* لتوسيطها أفقياً */  
+  gap: 20px;              /* المسافة بين العناصر */  
+}  
+  
+    .info-item {  
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      max-width: 280px;  
+      color: #ddd;  
+    }  
+  
+    .info-item a {  
+      text-decoration: none;  
+      color: inherit;  
+    }  
+  
+    footer {  
+      background-color: #0a1a2a;  
+      color: #c8a44d;  
+      text-align: center;  
+      padding: 20px;  
+      border-top: 1px solid #c8a44d;  
+      font-size: 0.9rem;  
+    }  
+  
+    /* نافذة الاستمارة */  
+    .popup {  
+      display: none;  
+      position: fixed;  
+      top: 0; left: 0;  
+      width: 100%; height: 100%;  
+      background: rgba(0,0,0,0.7);  
+      justify-content: center;  
+      align-items: center;  
+      z-index: 1000;  
+    }  
+    /* ✅ تصحيح: إظهار نافذة الاستشارة عند الضغط على الزر */  
+.popup.open {  
+  display: flex !important;  
+}  
+  
+    .popup-content {  
+      background: #10243b;  
+      border: 2px solid #c8a44d;  
+      border-radius: 20px;  
+      padding: 30px;  
+      width: 90%;  
+      max-width: 400px;  
+      text-align: center;  
+      position: relative;  
+    }  
+  
+    .popup-content h3 {  
+      color: #c8a44d;  
+      margin-bottom: 20px;  
+    }  
+  
+    .popup-content input,   
+    .popup-content textarea {  
+      width: 100%;  
+      padding: 10px;  
+      margin: 10px 0;  
+      border-radius: 10px;  
+      border: 1px solid #c8a44d;  
+      background: #0a1a2a;  
+      color: #fff;  
+      font-size: 1rem;  
+    }  
+  
+    .popup-content button {  
+      padding: 10px 20px;  
+      border: none;  
+      background: #c8a44d;  
+      color: #0a1a2a;  
+      font-weight: bold;  
+      border-radius: 20px;  
+      cursor: pointer;  
+      transition: 0.3s;  
+    }  
+  
+    .popup-content button:hover {  
+      background: #b08f3c;  
+    }  
+  
+    .close-btn {  
+      background: rgba(200, 164, 77, 0.5);  
+      border: none;  
+      color: #c8a44d;  
+      font-size: 1.2rem;  
+      width: 30px;  
+      height: 30px;  
+      line-height: 30px;  
+      text-align: center;  
+      border-radius: 50%;  
+      position: absolute;  
+      top: 10px;  
+      right: 10px;  
+      cursor: pointer;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      transition: 0.3s;  
+    }  
+  
+    .close-btn:hover {  
+      background: rgba(200, 164, 77, 0.4);  
+    }  
+  
+    .success {  
+      display: none;  
+      position: absolute;  
+      top: 50%;  
+      left: 50%;  
+      transform: translate(-50%, -50%);  
+      background: #0a1a2a;  
+      border: 2px solid #0f0;  
+      padding: 15px 25px;  
+      border-radius: 10px;  
+      color: #0f0;  
+      font-weight: bold;  
+    }  
+  
+    /* زر التواصل الدائري */  
+    .circle-menu {  
+      position: fixed;  
+      bottom: 25px;  
+      left: 25px;  
+      width: 60px;  
+      height: 60px;  
+      z-index: 999;  
+    }  
+  
+    .circle-menu .sub-btn {  
+      position: absolute;  
+      width: 50px;  
+      height: 50px;  
+      background: #0a1a2a;  
+      border-radius: 50%;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      text-decoration: none;  
+      color: #0a1a2a;  
+      transition: all 0.3s ease;  
+      transform: scale(0);  
+    }  
+    .circle-menu .sub-btn i {  
+      width: 28px;  
+      height: 28px;  
+      stroke: #0a1a2a;  
+    }  
+    .circle-menu .sub-btn:hover {  
+      transform: scale(1.2);  
+      background: #b9933a;  
+    }  
+  
+    .circle-menu.active .sub-btn:nth-child(2) {  
+      transform: translate(0px, -150px) scale(1);  
+    }  
+    .circle-menu.active .sub-btn:nth-child(3) {  
+      transform: translate(45px, -110px) scale(1);  
+    }  
+    .circle-menu.active .sub-btn:nth-child(4) {  
+      transform: translate(70px, -50px) scale(1);  
+    }  
+    /* ✅ تحسين شكل أيقونات القائمة الدائرية */  
+.circle-menu i {  
+  width: 28px;  
+  height: 28px;  
+  stroke-width: 2.5;  
+}  
+  
+/* الأيقونة الرئيسية (علامة الزائد) */  
+.circle-menu .main-btn .main-icon {  
+  stroke: #0a1a2a;  
+  background: #c8a44d;  
+  border-radius: 50%;  
+  padding: 0.1px;  
+  transition: transform 0.3s ease;  
+}  
+  
+/* تأثير بسيط عند تفعيل القائمة */  
+.circle-menu.active .main-btn .main-icon {  
+  transform: rotate(45deg);  
+}  
+header {  
+  position: relative;  
+  z-index: 10;  
+}  
+header h1 {  
+  color: #c8a44d !important;  
+}  
+/* العنوان الرئيسي */  
+.hero h2 {  
+  font-size: clamp(1.8rem, 3vw + 1rem, 3.2rem);  
+  font-weight: 700;  
+  color: #c8a44d;  
+  margin-bottom: 1rem;  
+}  
+  
+/* النص الأبيض (نصنع العدالة...) */  
+.hero p {  
+  font-size: clamp(1rem, 1.5vw + 0.6rem, 1.6rem); /* 🔹 حجم متجاوب ومتناسب أكثر */  
+  color: #ffffff;  
+  max-width: 750px;  
+  margin: 0 auto 1.8rem auto;  
+  line-height: 1.9;  
+  text-align: center; /* ✅ يضمن التناسق الجمالي في جميع الأجهزة */  
+}  
+  
+/* زر احجز استشارتك الآن */  
+.hero .btn {  
+  font-size: clamp(1rem, 1.2vw + 0.3rem, 1.3rem);  
+  padding: 0.8rem 1.6rem;  
+  background-color: #c8a44d;  
+  color: #0a1a2a;  
+  border: none;  
+  border-radius: 50px;  
+  cursor: pointer;  
+  font-weight: 600;  
+  transition: all 0.3s ease;  
+}  
+  
+.hero .btn:hover {  
+  background-color: #e6c268;  
+  transform: scale(1.05);  
+}  
+/* 🌟 الزر الرئيسي للتواصل - تصميم فاخر ذهبي وكحلي */  
+.circle-menu .main-btn {  
+  width: 70px; /* 🔸 حجم أكبر قليلاً وواضح */  
+  height: 70px;  
+  background: radial-gradient(circle at center, #ffff 0%, #d4af37 60%, #b98c1e 100%);  
+  border: 3px solid rgba(10, 26, 42, 0.7); /* إطار كحلي أنيق */  
+  border-radius: 50%;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  cursor: pointer;  
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);  
+  transition: all 0.35s ease;  
+  overflow: hidden;  
+}  
+  
+/* ✨ تأثير عند المرور */  
+.circle-menu .main-btn:hover {  
+  transform: scale(1.08) rotate(5deg);  
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);  
+  background: radial-gradient(circle at center, #ffec8b 0%, #e6c04d 70%, #c79822 100%);  
+}  
+  
+/* 💌 أيقونة الرسالة */  
+.circle-menu .main-icon {  
+  width: 36px;             /* 🔹 حجم متناسق تمامًا */  
+  height: 36px;  
+  stroke: #0a1a2a;         /* كحلي */  
+  stroke-width: 2.3;  
+  margin: 0;               /* إزالة أي إزاحة داخلية */  
+  padding: 0;  
+  transform: translateY(0); /* تأكيد تمركزها عموديًا */  
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));  
+  transition: transform 0.3s ease;  
+  overflow: visible;        /* ✅ يمنع قصّ أطراف الأيقونة */  
+}  
+  
+/* عند الضغط */  
+.circle-menu.active .main-icon {  
+  transform: rotate(45deg);  
+}  
+.services-list {  
+  font-size: 1.2rem; /* 🔹 عدّل الرقم لتكبير أو تصغير النص */  
+  color: #fff;  
+  line-height: 2; /* تباعد مريح بين البنود */  
+  margin-top: 20px;  
+  text-align: center;  
+}  
+.move-down {  
+  margin-top: 120px; /* 🔹 تقدر تزود الرقم لو عايز تنزل أكتر */  
+}  
+.gold-separator {  
+  border: none;  
+  height: 1px;  /* سمك الخط */  
+  background: linear-gradient(to right, #c8a44d, #ffdb70, #c8a44d);  
+  width: 50%;   /* عرض الخط */  
+  margin: 0.5px auto; /* مسافة من الأعلى والأسفل */  
+  border-radius: 2px;  
+  opacity: 0.9;  
+}  
+.hero-buttons {  
+  display: flex;  
+  flex-direction: row;      /* جنب بعض افتراضيًا */  
+  gap: 20px;                /* مسافة بين الزرين */  
+  justify-content: center;  /* توسيط */  
+  margin-top: 20px;  
+}  
+  
+@media (max-width: 768px) {  
+  .hero-buttons {  
+    flex-direction: column; /* فوق بعض على الهاتف */  
+    gap: 15px;              /* مسافة عمودية أقل */  
+  }  
+}  
+/* 🌟 تصميم البنود القابلة للفتح والإغلاق */  
+.service-item {  
+  border-bottom: 1px solid #ffffff50; /* خط أبيض شفاف */  
+  padding: 15px 0;  
+  text-align: center;  
+  cursor: pointer;  
+  transition: background 0.3s ease;  
+}  
+  
+.service-item:hover {  
+  background: rgba(255,255,255,0.05);  
+}  
+  
+.service-title {  
+  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem);  
+  color: #f5f5f5;  
+  font-weight: 600;  
+  transition: color 0.3s;  
+}  
+  
+.service-item.active .service-title {  
+  color: #c8a44d; /* ذهبي عند الفتح */  
+}  
+  
+.service-details {  
+  display: none;  
+  font-size: clamp(0.9rem, 1vw + 0.3rem, 1.1rem);  
+  color: #dddddd;  
+  line-height: 1.8;  
+  margin-top: 10px;  
+  text-align: center;  
+  animation: fadeIn 0.4s ease;  
+}  
+  
+.service-item.active .service-details {  
+  display: block;  
+}  
+  
+@keyframes fadeIn {  
+  from { opacity: 0; transform: translateY(-5px); }  
+  to { opacity: 1; transform: translateY(0); }  
+}  
+/* 👇 تعديل طول القسم الشفاف */  
+.transparent-section,  
+.about-section {  
+  min-height: auto; /* يتيح الطول يتكيف مع المحتوى */  
+  height: auto !important;  
+  padding-bottom: 100px; /* يضمن مساحة كافية تحت الزر */  
+  position: relative;  
+  z-index: 2;  
+}  
+  
+/* خلي الخلفية الشفافة تغطي كامل المحتوى */  
+.transparent-section::before,  
+.about-section::before {  
+  content: "";  
+  position: absolute;  
+  inset: 0;  
+  background: rgba(255, 255, 255, 0.08); /* الشفافية اللي عندك */  
+  z-index: -1;  
+}  
+@media (max-width: 768px) {  
+  .transparent-section,  
+  .about-section {  
+    padding-top: 80px;  
+    padding-bottom: 120px; /* يزود المساحة السفلية */  
+  }  
+  
+  .transparent-section .btn,  
+  .about-section .btn {  
+    margin-bottom: 30px; /* مسافة تحت الزر */  
+  }  
+}  
+.transparent-section,  
+.about-section {  
+  position: relative;  
+  height: auto;  
+  min-height: 100vh; /* تغطي الشاشة بالكامل على الأقل */  
+  padding-top: 100px;  
+  padding-bottom: 150px; /* مساحة كافية تحت الأزرار */  
+  overflow: hidden; /* تمنع النص أو الأزرار يخرجوا برّه */  
+  z-index: 2;  
+}  
+/* ===== تعديل طول وسلوك القسم الشفاف (القسم اللي فيه الفقرات + الأزرار) ===== */  
+/* في الكود الحالي القسم الشفاف اللي كتبته هو .hero */  
+.hero {  
+  height: auto !important;      /* يتكيف مع المحتوى */  
+  min-height: 100vh;            /* يغطي شاشة الجهاز على الأقل — تقدر تقلل لو مش عايز */  
+  padding-top: 40px;            /* المسافة من فوق (عدل حسب الذوق) */  
+  padding-bottom: 160px;        /* مساحة كافية تحت الأزرار حتى على الموبايل */  
+  position: relative;  
+  z-index: 2;  
+  overflow: hidden;             /* يمنع النص/الأزرار من النزول فوق الخلفية اللي تحتها */  
+}  
+@media (max-width: 768px) {  
+  .hero {  
+    padding-top: 60px;       /* ممكن تزوده لو تحب */  
+    padding-bottom: 220px;   /* مساحة إضافية في الموبايل لضمان عدم التداخل */  
+  }  
+  
+  /* لو الأزرار محتاجة مسافة إضافية تحتها */  
+  .hero .hero-buttons {  
+    gap: 18px;  
+  }  
+  
+  .hero .btn {  
+    width: 90%;            /* يخلي الأزرار أعرض وأسهل للضغط على الموبايل */  
+    max-width: 420px;  
+    margin: 0 auto;  
+    display: block;  
+  }  
+}  
+#openLawyerCard {  
+  position: relative;  
+  z-index: 99999 !important;  
+  pointer-events: auto !important;  
+}  
+#cardPopup, #lawyerCardPopup {  
+  z-index: 999999 !important;  
+}  
+  
+  </style>  </head>  
+<body>    <header>  
+    <img src="images/balance.png" alt="ميزان العدالة">  
+<h1>ٱلْمُحَمَّدِيّ لِأَعْمَالِ ٱلْمُحَامَاةِ</h1>  
+  </header>    <section class="hero">  
+    <div class="move-down">  
+    <h2>نصنع العدالة ونحمي الحقوق</h2>  
+    <p>مكتب المحمدي للمحاماة يقدم خدمات قانونية متكاملة باحترافية ومصداقية عالية في جميع المجالات</p>  
+<div class="services-list">  
+  <div class="service-item">  
+    <div class="service-title">🔹 التحكيم وتسوية المنازعات</div>  
+    <div class="service-details">  
+      نقوم بتمثيل العملاء في إجراءات التحكيم التجاري وتسوية المنازعات بطرق ودّية أو قانونية لضمان أفضل النتائج.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 القضايا التجارية والعقارية</div>  
+    <div class="service-details">  
+      نقدم استشارات شاملة في النزاعات التجارية والعقارية وصياغة العقود لضمان حقوق الأطراف.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 القضايا المدنية والجنائية</div>  
+    <div class="service-details">  
+      نتابع جميع القضايا أمام المحاكم بكفاءة عالية سواء كانت مدنية أو جنائية لضمان العدالة لعملائنا.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 صياغة العقود ومراجعتها</div>  
+    <div class="service-details">  
+      نضمن صياغة عقود دقيقة وواضحة تحمي مصالح عملائنا وتقلل من النزاعات المستقبلية.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 الاستشارات القانونية</div>  
+    <div class="service-details">  
+      نقدم استشارات قانونية دقيقة في مختلف المجالات القانونية لضمان اتخاذ القرارات الصائبة.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 الأحوال الشخصية</div>  
+    <div class="service-details">  
+      خدماتنا تشمل القضايا الأسرية مثل الطلاق والنفقة والحضانة بمهنية وسرية تامة.  
+    </div>  
+  </div>    <div class="service-item">  
+    <div class="service-title">🔹 القانون الإداري</div>  
+    <div class="service-details">  
+      نُمثل العملاء أمام الجهات الحكومية والإدارية ونتابع قضايا التعويض والطعن في القرارات الإدارية.  
+    </div>  
+  </div>  
+</div>  
+<div class="hero-buttons">  
+  <button class="btn" id="openForm">احجز استشارتك الآن</button>  
+  <button class="btn" id="openLawyerCard" style="background:#bfa14a;">اطلب كارنيه المحامي</button>  
+</div>  
+</div>  
+  </section>  
+  <hr class="gold-separator">  
+  <section class="about">  
+    <h3>AL-Mohamady Law Group ⚖</h3>  
+    <p>مكتب المحمدي من المكاتب الرائدة في تقديم الاستشارات القانونية وتمثيل العملاء أمام الجهات القضائية والإدارية بمهنية عالية وخبرة ممتدة...</p>  
+    <p> ⚖ من ثقتكم نبدأ . . وإلي عدالتكم نصل ⚖</p>  
+  </section>    <section class="news">  
+    <a href="news.html" class="news-section" style="text-decoration:none; color:inherit;">  
+      <i data-lucide="briefcase" class="icon"></i>  
+      <h4>أخبار المكتب</h4>  
+      <p>تابع آخر أخبار مكتب المحمدي، إنجازاتنا، وفعالياتنا القانونية القادمة.</p>  
+    </a>  <a href="general-news.html" class="news-section" style="text-decoration:none; color:inherit;">  
+  <i data-lucide="newspaper" class="icon"></i>  
+  <h4>أخبار عامة</h4>  
+  <p>آخر المستجدات القانونية والقرارات الجديدة في ساحة العدالة.</p>  
 </a>
 
-<!-- فيسبوك -->
-<a class="sub-btn" href="https://www.facebook.com/share/1AN43j9sct/" target="_blank" rel="noopener" title="فيسبوك" style="background-color:#1877F2;">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" 
-       alt="فيسبوك" 
-       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">
-</a>
+  </section>    <section class="contact">  
+    <h3>للتواصل ...</h3>  
+    <div class="contact-info">  <!-- رقم الهاتف -->  
+  <div class="info-item">  
+    <a href="tel:+201029207323" target="_blank" title="اتصل الآن">  
+      <i data-lucide="phone" class="icon"></i>  
+    </a>  
+    <p>01029207323</p>  
+  </div>  
 
-<!-- يوتيوب -->
-<a class="sub-btn" href="https://youtube.com/@al-mohamadylawgroup?si=dCzF3UrpM09-v3pw" target="_blank" rel="noopener" title="يوتيوب" style="background-color:#FF0000;">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" 
-       alt="يوتيوب" 
-       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">
-</a>
+  <!-- البريد الإلكتروني -->  
+  <div class="info-item">  
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=al.mohamady2026@gmail.com" target="_blank">  
+      <i data-lucide="mail" class="icon"></i>  
+    </a>  
+    <p>al.mohamady2026@gmail.com</p>  
+  </div>  
+
+  <!-- موقع المكتب -->  
+  <div class="info-item">  
+    <a href="https://maps.app.goo.gl/LJR4nVyLqEJkWLmt7?g_st=awb" target="_blank">  
+      <i data-lucide="map-pin" class="icon"></i>  
+    </a>  
+    <p>القاهرة - المعصرة - الدواجن - شارع البستان - خلف مسجد البستان</p>  
+  </div>  
+
 </div>
 
-<!-- Popup form (اصلاح: غلاف البوب أب + فورم يعمل مباشرة مع FormSubmit) -->
-<div class="popup" id="popupForm" role="dialog" aria-hidden="true" aria-labelledby="formTitle">
-  <div class="popup-content" role="document">
-    <button class="close-btn" id="closeForm" type="button" aria-label="إغلاق">×</button>
-    <h3 id="formTitle">حجز استشارة قانونية</h3>
-    
-<form id="consultForm" action="https://formspree.io/f/manpzqoe" method="POST">
-  <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
-  <input type="tel" name="الهاتف" placeholder="رقم الهاتف" required>
-  <textarea name="الاستشارة" rows="5" placeholder="استشارتك بالتفصيل..." required></textarea>
-
-  <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">
-    <button type="submit">إرسال</button>
-  </div>
-</form>
-
-<!-- ✅ إشعار النجاح -->
-<div id="successPopup" style="
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  background-color:#28a745;
-  color:white;
-  padding:18px 30px;
-  border-radius:15px;
-  box-shadow:0 0 10px rgba(0,0,0,0.3);
-  z-index:2000;
-  font-size:18px;
-  text-align:center;
-  opacity:0;
-  transition:opacity 0.4s ease;
-">
-  ✅ تم الإرسال بنجاح، شكرًا لك.
-</div></div> <!-- ✅ يقفل نافذة الاستشارة بالكامل -->
+  </section>    <footer>  
+    جميع الحقوق محفوظة © 2025 - مكتب المحمدي لأعمال المحاماة  
+  </footer>  
+  <!-- Circle menu -->  
+<div class="circle-menu" id="circleMenu" aria-label="قائمة تواصل">  
+  <!-- الزر الرئيسي -->  
+<div class="main-btn" id="mainBtn" role="button" tabindex="0" aria-expanded="false" aria-controls="circleMenu">  
+  <i data-lucide="message-circle" class="main-icon" aria-hidden="true"></i>  
+</div>  <!-- واتساب -->  <a class="sub-btn" href="https://wa.me/2001146126603" target="_blank" rel="noopener" title="واتساب" style="background-color:#25D366;">  
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg"   
+       alt="واتساب"   
+       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">  
+</a>  <!-- فيسبوك -->  <a class="sub-btn" href="https://www.facebook.com/share/1AN43j9sct/" target="_blank" rel="noopener" title="فيسبوك" style="background-color:#1877F2;">  
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg"   
+       alt="فيسبوك"   
+       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">  
+</a>  <!-- يوتيوب -->  <a class="sub-btn" href="https://youtube.com/@al-mohamadylawgroup?si=dCzF3UrpM09-v3pw" target="_blank" rel="noopener" title="يوتيوب" style="background-color:#FF0000;">  
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg"   
+       alt="يوتيوب"   
+       style="width:26px;height:26px;filter:invert(100%) brightness(200%);">  
+</a>  
+</div>  <!-- Popup form (اصلاح: غلاف البوب أب + فورم يعمل مباشرة مع FormSubmit) -->  <div class="popup" id="popupForm" role="dialog" aria-hidden="true" aria-labelledby="formTitle">  
+  <div class="popup-content" role="document">  
+    <button class="close-btn" id="closeForm" type="button" aria-label="إغلاق">×</button>  
+    <h3 id="formTitle">حجز استشارة قانونية</h3>  <form id="consultForm" action="https://formspree.io/f/manpzqoe" method="POST">  
+  <input type="text" name="الاسم" placeholder="الاسم الكامل" required>  
+  <input type="tel" name="الهاتف" placeholder="رقم الهاتف" required>  
+  <textarea name="الاستشارة" rows="5" placeholder="استشارتك بالتفصيل..." required></textarea>    <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">  
+    <button type="submit">إرسال</button>  
+  </div>  
+</form>  <!-- ✅ إشعار النجاح -->  <div id="successPopup" style="  
+  display:none;  
+  position:fixed;  
+  top:50%;  
+  left:50%;  
+  transform:translate(-50%, -50%);  
+  background-color:#28a745;  
+  color:white;  
+  padding:18px 30px;  
+  border-radius:15px;  
+  box-shadow:0 0 10px rgba(0,0,0,0.3);  
+  z-index:2000;  
+  font-size:18px;  
+  text-align:center;  
+  opacity:0;  
+  transition:opacity 0.4s ease;  
+">  
+  ✅ تم الإرسال بنجاح، شكرًا لك.  
+</div></div> <!-- ✅ يقفل نافذة الاستشارة بالكامل -->  
+</div>  
+<!-- ✅ نافذة إدخال الكود السري -->  
+<div class="popup" id="cardPopup">  
+  <div class="popup-content" style="max-width:400px;">  
+    <button class="close-btn" id="closeCard">×</button>  
+    <h3 style="color:#c8a44d;">إدخال الكود السري</h3>  
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">  
+    <button id="checkPassword">ادخال</button>  
+    <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>  
+    <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>  
+  </div>  
+</div>  
+<!-- ✅ نافذة الكارنيه الواقعية -->  
+<div class="popup" id="lawyerCardPopup">  
+  <div class="popup-content"   
+       style="  
+         width: 600px;  
+         height: 320px;  
+         position: relative;  
+         direction: rtl;  
+         background: url('images/new.200.jpg') no-repeat center center;  
+         background-size: 100% 100%; /* ← الصورة تمتد لتغطي كل النافذة بالكامل */  
+         border:2px solid #c8a44d;  
+         border-radius:15px;  
+         padding:30px 40px; /* يمكن تعديل لو عايز العناصر تبقى أقرب للحواف */  
+         box-shadow:0 0 15px rgba(0,0,0,0.5);  
+         overflow:hidden;  
+       ">  <button class="close-btn" id="closeLawyerCard"  
+        style="position:absolute; top:0px; left:-30px; font-size:20px; color:#fff;">×</button>  
+  
+<!-- 🟡 محتوى الكارنيه فوق الصورة -->  
+<div style="display:flex; justify-content:space-between; align-items:flex-start; height:100%;">  
+  <!-- ضع هنا باقي عناصر الكارنيه (النصوص، الصورة الشخصية، الشعار) -->  
 </div>
-<!-- ✅ نافذة إدخال الكود السري -->
-<div class="popup" id="cardPopup">
-  <div class="popup-content" style="max-width:400px;">
-    <button class="close-btn" id="closeCard">×</button>
-    <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">
-    <button id="checkPassword">ادخال</button>
-    <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
-    <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
-  </div>
-</div>
-<!-- ✅ نافذة الكارنيه الواقعية -->
-<div class="popup" id="lawyerCardPopup">
-  <div class="popup-content" 
-       style="
-         width: 600px;
-         height: 320px;
-         position: relative;
-         direction: rtl;
-         background: url('images/new.200.jpg') no-repeat center center;
-         background-size: 100% 100%; /* ← الصورة تمتد لتغطي كل النافذة بالكامل */
-         border:2px solid #c8a44d;
-         border-radius:15px;
-         padding:30px 40px; /* يمكن تعديل لو عايز العناصر تبقى أقرب للحواف */
-         box-shadow:0 0 15px rgba(0,0,0,0.5);
-         overflow:hidden;
-       ">
 
-    <button class="close-btn" id="closeLawyerCard"
-            style="position:absolute; top:0px; left:-30px; font-size:20px; color:#fff;">×</button>
-    
-    <!-- 🟡 محتوى الكارنيه فوق الصورة -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; height:100%;">
-      <!-- ضع هنا باقي عناصر الكارنيه (النصوص، الصورة الشخصية، الشعار) -->
-    </div>
+  </div>  
+</div>  
+<script>  
+document.getElementById('consultForm').addEventListener('submit', async function(e) {  
+  e.preventDefault();  
+  const form = e.target;  
+  const formData = new FormData(form);  try {
+const response = await fetch(form.action, {
+method: form.method,
+body: formData,
+headers: { 'Accept': 'application/json' }
+});
 
-  </div>
-</div>
-<script>
-document.getElementById('consultForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
+if (response.ok) {  
+  form.reset();  
 
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
+  // إظهار الإشعار  
+  const popup = document.getElementById('successPopup');  
+  popup.style.display = 'block';  
+  setTimeout(() => popup.style.opacity = '1', 50);  
 
-    if (response.ok) {
-      form.reset();
+  // بعد ثانيتين: إخفاء الإشعار وغلق نافذة البيانات  
+  setTimeout(() => {  
+    popup.style.opacity = '0';  
+    setTimeout(() => { popup.style.display = 'none'; }, 400);  
 
-      // إظهار الإشعار
-      const popup = document.getElementById('successPopup');
-      popup.style.display = 'block';
-      setTimeout(() => popup.style.opacity = '1', 50);
+    const popupForm = document.getElementById('popupForm');  
+    if (popupForm) {  
+      popupForm.classList.remove('open');  
+      popupForm.setAttribute('aria-hidden', 'true');  
+    }  
+  }, 1000);  
+} else {  
+  alert('حدث خطأ أثناء الإرسال، حاول مرة أخرى.');  
+}
 
-      // بعد ثانيتين: إخفاء الإشعار وغلق نافذة البيانات
-      setTimeout(() => {
-        popup.style.opacity = '0';
-        setTimeout(() => { popup.style.display = 'none'; }, 400);
-
-        const popupForm = document.getElementById('popupForm');
-        if (popupForm) {
-          popupForm.classList.remove('open');
-          popupForm.setAttribute('aria-hidden', 'true');
-        }
-      }, 1000);
-    } else {
-      alert('حدث خطأ أثناء الإرسال، حاول مرة أخرى.');
-    }
-  } catch (error) {
-    alert('تعذر الاتصال بالخادم. تأكد من الاتصال بالإنترنت.');
-  }
+} catch (error) {
+alert('تعذر الاتصال بالخادم. تأكد من الاتصال بالإنترنت.');
+}
 });
 </script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // عناصر DOM
-    const popup = document.getElementById('popupForm');
-    const openBtn = document.getElementById('openForm');
-    const closeBtn = document.getElementById('closeForm');
-    const circleMenu = document.getElementById('circleMenu');
-    const mainBtn = document.getElementById('mainBtn');
 
-    // فتح الاستمارة
-    if (openBtn && popup) {
-      openBtn.addEventListener('click', function () {
-        popup.classList.add('open');
-        popup.setAttribute('aria-hidden', 'false');
-      });
-    }
-
-    // غلق الاستمارة بزر الإغلاق
-    if (closeBtn && popup) {
-      closeBtn.addEventListener('click', function () {
-        popup.classList.remove('open');
-        popup.setAttribute('aria-hidden', 'true');
-      });
-    }
-
-    // غلق بالضغط على الخلفية
-    if (popup) {
-      popup.addEventListener('click', function (e) {
-        if (e.target === popup) {
-          popup.classList.remove('open');
-          popup.setAttribute('aria-hidden', 'true');
-        }
-      });
-    }
-
-    // تفعيل زر الدائرة (نقر + لوحة مفاتيح)
-    if (mainBtn && circleMenu) {
-      const toggleCircle = () => {
-        circleMenu.classList.toggle('active');
-        const expanded = mainBtn.getAttribute('aria-expanded') === 'true';
-        mainBtn.setAttribute('aria-expanded', (!expanded).toString());
-      };
-      mainBtn.addEventListener('click', toggleCircle);
-      mainBtn.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCircle(); }
-      });
-    }
-  });
-</script>
-<!-- تحميل مكتبة الأيقونات Lucide -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // تفعيل الأيقونات بعد تحميل الصفحة بالكامل
-    lucide.createIcons();
-  });
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const serviceItems = document.querySelectorAll('.service-item');
-
-  serviceItems.forEach(item => {
-    item.addEventListener('click', () => {
-      // إغلاق أي عنصر آخر مفتوح
-      serviceItems.forEach(other => {
-        if (other !== item) other.classList.remove('active');
-      });
-
-      // تبديل العنصر الحالي
-      item.classList.toggle('active');
-    });
-  });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const openCardBtn = document.getElementById("openLawyerCard");
-  const cardPopup = document.getElementById("cardPopup");
-  const passwordInput = document.getElementById("cardPassword");
-  const passwordEnter = document.getElementById("checkPassword");
-  const passwordClose = document.getElementById("closeCard");
-  const lawyerCardPopup = document.getElementById("lawyerCardPopup");
-  const closeLawyerCard = document.getElementById("closeLawyerCard");
-  const attemptMessage = document.getElementById("attemptMessage");
-  const timerMessage = document.getElementById("timerMessage");
-
-  let attempts = 0;
-  let lockTime = 30000; // 30 ثانية
-  let isLocked = false;
-
-  openCardBtn.addEventListener("click", function() {
-    cardPopup.classList.add("open");
-    passwordInput.value = "";
-    attemptMessage.textContent = "";
-    timerMessage.textContent = "";
-  });
-
-  passwordClose.addEventListener("click", function() {
-    cardPopup.classList.remove("open");
-    attempts = 0;
-    isLocked = false;
-    passwordInput.disabled = false;
-    attemptMessage.textContent = "";
-    timerMessage.textContent = "";
-  });
-
-  passwordEnter.addEventListener("click", function() {
-    if (isLocked) return; // منع الإدخال أثناء القفل
-
-    const password = passwordInput.value.trim();
-    if (password === "00000") {
-      attempts = 0;
-      cardPopup.classList.remove("open");
-      lawyerCardPopup.classList.add("open");
-      passwordInput.value = "";
-      attemptMessage.textContent = "";
-      timerMessage.textContent = "";
-    } else {
-      attempts++;
-      attemptMessage.textContent = ❌ كلمة المرور غير صحيحة! (${attempts});
-
-      if (attempts >= 3) {
-        isLocked = true;
-        passwordInput.disabled = true;
-        let remaining = 30;
-        timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
-
-        const countdown = setInterval(() => {
-          remaining--;
-          timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;
-          if (remaining <= 0) {
-            clearInterval(countdown);
-            passwordInput.disabled = false;
-            isLocked = false;
-            attempts = 0; // إعادة العد بعد انتهاء القفل
-            timerMessage.textContent = "";
-            attemptMessage.textContent = "";
-            passwordInput.value = "";
-            passwordInput.focus();
-          }
-        }, 1000);
-      } else {
-        passwordInput.value = "";
-        passwordInput.focus();
-      }
-    }
-  });
-
-  closeLawyerCard.addEventListener("click", function() {
-    lawyerCardPopup.classList.remove("open");
-  });
-});
-</script>
-</body>
+<script>  
+  document.addEventListener('DOMContentLoaded', function () {  
+    // عناصر DOM  
+    const popup = document.getElementById('popupForm');  
+    const openBtn = document.getElementById('openForm');  
+    const closeBtn = document.getElementById('closeForm');  
+    const circleMenu = document.getElementById('circleMenu');  
+    const mainBtn = document.getElementById('mainBtn');  
+  
+    // فتح الاستمارة  
+    if (openBtn && popup) {  
+      openBtn.addEventListener('click', function () {  
+        popup.classList.add('open');  
+        popup.setAttribute('aria-hidden', 'false');  
+      });  
+    }  
+  
+    // غلق الاستمارة بزر الإغلاق  
+    if (closeBtn && popup) {  
+      closeBtn.addEventListener('click', function () {  
+        popup.classList.remove('open');  
+        popup.setAttribute('aria-hidden', 'true');  
+      });  
+    }  
+  
+    // غلق بالضغط على الخلفية  
+    if (popup) {  
+      popup.addEventListener('click', function (e) {  
+        if (e.target === popup) {  
+          popup.classList.remove('open');  
+          popup.setAttribute('aria-hidden', 'true');  
+        }  
+      });  
+    }  
+  
+    // تفعيل زر الدائرة (نقر + لوحة مفاتيح)  
+    if (mainBtn && circleMenu) {  
+      const toggleCircle = () => {  
+        circleMenu.classList.toggle('active');  
+        const expanded = mainBtn.getAttribute('aria-expanded') === 'true';  
+        mainBtn.setAttribute('aria-expanded', (!expanded).toString());  
+      };  
+      mainBtn.addEventListener('click', toggleCircle);  
+      mainBtn.addEventListener('keydown', function (e) {  
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCircle(); }  
+      });  
+    }  
+  });  
+</script>  <!-- تحميل مكتبة الأيقونات Lucide -->  <script src="https://unpkg.com/lucide@latest"></script>  <script>  
+  window.addEventListener("DOMContentLoaded", () => {  
+    // تفعيل الأيقونات بعد تحميل الصفحة بالكامل  
+    lucide.createIcons();  
+  });  
+</script>  <script>  
+document.addEventListener('DOMContentLoaded', () => {  
+  const serviceItems = document.querySelectorAll('.service-item');  
+  
+  serviceItems.forEach(item => {  
+    item.addEventListener('click', () => {  
+      // إغلاق أي عنصر آخر مفتوح  
+      serviceItems.forEach(other => {  
+        if (other !== item) other.classList.remove('active');  
+      });  
+  
+      // تبديل العنصر الحالي  
+      item.classList.toggle('active');  
+    });  
+  });  
+});  
+</script>  <script>  
+document.addEventListener("DOMContentLoaded", function() {  
+  const openCardBtn = document.getElementById("openLawyerCard");  
+  const cardPopup = document.getElementById("cardPopup");  
+  const passwordInput = document.getElementById("cardPassword");  
+  const passwordEnter = document.getElementById("checkPassword");  
+  const passwordClose = document.getElementById("closeCard");  
+  const lawyerCardPopup = document.getElementById("lawyerCardPopup");  
+  const closeLawyerCard = document.getElementById("closeLawyerCard");  
+  const attemptMessage = document.getElementById("attemptMessage");  
+  const timerMessage = document.getElementById("timerMessage");  
+  
+  let attempts = 0;  
+  let lockTime = 30000; // 30 ثانية  
+  let isLocked = false;  
+  
+  openCardBtn.addEventListener("click", function() {  
+    cardPopup.classList.add("open");  
+    passwordInput.value = "";  
+    attemptMessage.textContent = "";  
+    timerMessage.textContent = "";  
+  });  
+  
+  passwordClose.addEventListener("click", function() {  
+    cardPopup.classList.remove("open");  
+    attempts = 0;  
+    isLocked = false;  
+    passwordInput.disabled = false;  
+    attemptMessage.textContent = "";  
+    timerMessage.textContent = "";  
+  });  
+  
+  passwordEnter.addEventListener("click", function() {  
+    if (isLocked) return; // منع الإدخال أثناء القفل  
+  
+    const password = passwordInput.value.trim();  
+    if (password === "00000") {  
+      attempts = 0;  
+      cardPopup.classList.remove("open");  
+      lawyerCardPopup.classList.add("open");  
+      passwordInput.value = "";  
+      attemptMessage.textContent = "";  
+      timerMessage.textContent = "";  
+    } else {  
+      attempts++;  
+      attemptMessage.textContent = ❌ كلمة المرور غير صحيحة! (${attempts});  
+  
+      if (attempts >= 3) {  
+        isLocked = true;  
+        passwordInput.disabled = true;  
+        let remaining = 30;  
+        timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;  
+  
+        const countdown = setInterval(() => {  
+          remaining--;  
+          timerMessage.textContent = ⏳ يرجى الانتظار ${remaining} ثانية قبل المحاولة مجددًا.;  
+          if (remaining <= 0) {  
+            clearInterval(countdown);  
+            passwordInput.disabled = false;  
+            isLocked = false;  
+            attempts = 0; // إعادة العد بعد انتهاء القفل  
+            timerMessage.textContent = "";  
+            attemptMessage.textContent = "";  
+            passwordInput.value = "";  
+            passwordInput.focus();  
+          }  
+        }, 1000);  
+      } else {  
+        passwordInput.value = "";  
+        passwordInput.focus();  
+      }  
+    }  
+  });  
+  
+  closeLawyerCard.addEventListener("click", function() {  
+    lawyerCardPopup.classList.remove("open");  
+  });  
+});  
+</script>  </body>  
 </html>
