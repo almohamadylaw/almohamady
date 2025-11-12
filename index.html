@@ -591,15 +591,14 @@ header h1 {
     display: block;
   }
 }
+#lawyerCardPopup.open {
+  display: flex !important;
+  z-index: 9999;
+}
 #openLawyerCard {
   position: relative;
-  z-index: 99999 !important;
-  pointer-events: auto !important;
+  z-index: 9999 !important;
 }
-#cardPopup, #lawyerCardPopup {
-  z-index: 999999 !important;
-}
-
   </style>
 </head>
 <body>
@@ -795,7 +794,7 @@ header h1 {
   <div class="popup-content" style="max-width:400px;">
     <button class="close-btn" id="closeCard">×</button>
     <h3 style="color:#c8a44d;">إدخال الكود السري</h3>
-    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (***)">
+    <input type="password" id="cardPassword" placeholder="أدخل الكود السري (*)">
     <button id="checkPassword">ادخال</button>
     <p id="attemptMessage" style="color:#ff5555; margin-top:10px;"></p>
     <p id="timerMessage" style="color:#c8a44d; margin-top:5px;"></p>
@@ -967,7 +966,7 @@ document.addEventListener('DOMContentLoaded', function () {
 checkPassword.addEventListener('click', () => {
     if (locked) return;
 
-    if (passwordInput.value === '000') {
+    if (passwordInput.value === '00000') {
       // ✅ الكود صحيح
       cardPopup.classList.remove('open');
       lawyerCardPopup.classList.add('open');
@@ -1029,17 +1028,6 @@ document.addEventListener('DOMContentLoaded', () => {
       item.classList.toggle('active');
     });
   });
-});
-</script>
-<script>
-  document.getElementById("openLawyerCard").addEventListener("click", function() {
-  const popup = document.getElementById("cardPopup");
-  if (popup) {
-    popup.classList.add("open");
-    console.log("✅ نافذة الكارنيه فُتحت");
-  } else {
-    console.error("❌ لم يتم العثور على cardPopup");
-  }
 });
 </script>
 </body>
