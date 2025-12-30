@@ -599,11 +599,48 @@ header h1 {
 #cardPopup, #lawyerCardPopup {
   z-index: 2000 !important;
 }
+/* شريط النسخة التجريبية */
+.trial-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #C9A24D; /* ذهبي */
+  color: #ffff; /* الخط الأحمر */
+  text-align: center;
+  font-weight: bold;
+  z-index: 9999;
 
+  /* التحكم في الحجم */
+  height: 45px;        /* ← غير الرقم ده لأي ارتفاع */
+  line-height: 45px;  /* لازم يساوي الارتفاع */
+
+  font-size: 16px;
+}
+
+/* علشان المحتوى ما يدخلش تحت الشريط */
+body {
+  padding-top: 45px; /* نفس ارتفاع الشريط */
+}
+
+/* تحسين للموبايل */
+@media (max-width: 600px) {
+  .trial-banner {
+    height: 38px;
+    line-height: 38px;
+    font-size: 14px;
+  }
+
+  body {
+    padding-top: 38px;
+  }
+}
   </style>
 </head>
 <body>
-
+<div class="trial-banner">
+  هذه النسخة تجريبية⚠️
+</div>
   <header>
     <img src="images/balance.png" alt="ميزان العدالة">
 <h1>ٱلْمُحَمَّدِيّ لِأَعْمَالِ ٱلْمُحَامَاةِ</h1>
