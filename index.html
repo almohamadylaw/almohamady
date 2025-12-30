@@ -635,6 +635,18 @@ body {
     padding-top: 38px;
   }
 }
+    .legal-disclaimer {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #f1d27a;          /* ذهبي هادي */
+  background: rgba(200, 164, 77, 0.08);
+  border: 1px dashed rgba(200, 164, 77, 0.4);
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -801,10 +813,16 @@ body {
   <input type="tel" name="الهاتف" placeholder="رقم الهاتف" required>
   <textarea name="الاستشارة" rows="5" placeholder="استشارتك بالتفصيل..." required></textarea>
 
+  <!-- ⚠️ التنبيه القانوني -->
+  <p class="legal-disclaimer">
+    ⚠️ المعلومات المقدمة لا تُعد استشارة قانونية ملزمة إلا بعد التعاقد الرسمي
+  </p>
+
   <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">
     <button type="submit">إرسال</button>
   </div>
 </form>
+
 
 <!-- ✅ إشعار النجاح -->
 <div id="successPopup" style="
