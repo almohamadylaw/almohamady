@@ -605,17 +605,19 @@ header h1 {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #C9A24D; /* ذهبي */
+background-color: rgba(255, 255, 255, 0.15); /* أبيض شفاف */
+backdrop-filter: blur(8px); /* يعطي تأثير الزجاجية */
   color: #ffff; /* الخط الأحمر */
   text-align: center;
   font-weight: bold;
-  z-index: 9999;
+border-bottom: 2px solid #DAA520; /* خط ذهبي */
 
   /* التحكم في الحجم */
   height: 45px;        /* ← غير الرقم ده لأي ارتفاع */
   line-height: 45px;  /* لازم يساوي الارتفاع */
 
   font-size: 16px;
+  z-index: 9999;
 }
 
 /* علشان المحتوى ما يدخلش تحت الشريط */
@@ -737,6 +739,13 @@ body {
       <h4>أخبار عامة</h4>
       <p>آخر المستجدات القانونية والقرارات الجديدة في ساحة العدالة.</p>
     </a>
+<a href="query.html" class="news-section" style="text-decoration:none; color:inherit;">
+  <!-- أيقونة البحث -->
+  <i data-lucide="search" class="icon"></i>
+  
+  <h4>الاستعلام عن القضايا</h4>
+  <p>اضغط هنا للاستعلام عن القضايا ومتابعة آخر التحديثات القضائية الخاصة بك.</p>
+</a>
   </section>
 
   <section class="contact">
@@ -1017,6 +1026,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cardPasswordInput?.addEventListener('keydown', (e) => { if(e.key==='Enter'){ e.preventDefault(); checkPasswordBtn.click(); }});
   }
+});
+const toggle = document.getElementById('queryMenuToggle');
+const panel = document.getElementById('queryPanel');
+const goBtn = document.getElementById('goToQueryPage');
+
+toggle.addEventListener('click', () => {
+  panel.classList.toggle('open');
+});
+
+goBtn.addEventListener('click', () => {
+  window.location.href = 'query.html'; // الصفحة المنفصلة للاستعلام
 });
 </script>
 </body>
