@@ -81,7 +81,7 @@ form.addEventListener('submit', async function(e){
   const lastUpdate = document.getElementById('lastUpdate').value;
 
   // نعمل مفتاح فريد لكل قضية على أساس الرقم القومي + رقم القضية + السنة
-const caseId = `${caseNumber}_${caseYear}`;
+const caseId = `${nationalID}_${caseNumber}_${caseYear}`;
   const caseRef = doc(db, "cases", caseId);
 
   try {
