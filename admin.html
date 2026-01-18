@@ -46,47 +46,73 @@ button:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
   
 <div id="message"></div>
 <button id="goHomeAdminBtn">العودة للصفحة الرئيسية 🏠</button>
-<script>
-// فورم الإدارة
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// إعدادات Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBjtn7LIv2nIuA18aL8LgzZINKrbDSW0Q0",
+  authDomain: "el-mohamady-cases.firebaseapp.com",
+  projectId: "el-mohamady-cases",
+  storageBucket: "el-mohamady-cases.firebasestorage.app",
+  messagingSenderId: "877053136418",
+  appId: "1:877053136418:web:9be069bfdbedf70239447b"
+};
+
+// تهيئة Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const form = document.getElementById('adminForm');
 const message = document.getElementById('message');
 
-form.addEventListener('submit', function(e){
+form.addEventListener('submit', async function(e){
   e.preventDefault();
 
-  // قراءة القيم
-  const newCase = {
-    fullName: document.getElementById('fullName').value.trim(),
-    nationalID: document.getElementById('nationalID').value.trim(),
-    caseNumber: document.getElementById('caseNumber').value.trim(),
-    caseYear: document.getElementById('caseYear').value.trim(),
-    caseType: document.getElementById('caseType').value.trim(),
-    lastAction: document.getElementById('lastAction').value.trim(),
-    lastUpdate: document.getElementById('lastUpdate').value
-  };
+  const fullName = document.getElementById('fullName').value.trim();
+  const nationalID = document.getElementById('nationalID').value.trim();
+  const caseNumber = document.getElementById('caseNumber').value.trim();
+  const caseYear = document.getElementById('caseYear').value.trim();
+  const caseType = document.getElementById('caseType').value.trim();
+  const lastAction = document.getElementById('lastAction').value.trim();
+  const lastUpdate = document.getElementById('lastUpdate').value;
 
-  // تحميل القضايا الموجودة من localStorage
-  let storedCases = localStorage.getItem('casesData');
-  storedCases = storedCases ? JSON.parse(storedCases) : [];
+  // نعمل مفتاح فريد لكل قضية على أساس الرقم القومي + رقم القضية + السنة
+  const caseId = `${nationalID}_${caseNumber}_${caseYear}`;
+  const caseRef = doc(db, "cases", caseId);
 
-  // البحث إذا القضية موجودة مسبقًا
-  const index = storedCases.findIndex(c => c.nationalID === newCase.nationalID && c.caseNumber === newCase.caseNumber && c.caseYear === newCase.caseYear);
-  if(index > -1){
-    storedCases[index] = newCase; // تحديث
-    message.textContent = 'تم تحديث القضية بنجاح ✅';
-  } else {
-    storedCases.push(newCase); // إضافة جديدة
-    message.textContent = 'تم إضافة القضية بنجاح ✅';
+  try {
+    const caseSnap = await getDoc(caseRef);
+
+    await setDoc(caseRef, {
+      fullName,
+      nationalID,
+      caseNumber,
+      caseYear,
+      caseType,
+      lastAction,
+      lastUpdate
+    });
+
+    if(caseSnap.exists()){
+      message.textContent = "✅ تم تحديث القضية بنجاح";
+    } else {
+      message.textContent = "✅ تم إضافة القضية بنجاح";
+    }
+
+    form.reset();
+  } catch (error) {
+    console.error(error);
+    message.textContent = "❌ حدث خطأ، حاول مرة أخرى";
   }
-
-  // حفظ البيانات
-  localStorage.setItem('casesData', JSON.stringify(storedCases));
-
-  // إعادة ضبط الفورم
-  form.reset();
 });
+
+// زر العودة للصفحة الرئيسية
 document.getElementById('goHomeAdminBtn').addEventListener('click', () => {
-  window.location.href = 'index.html'; // رابط صفحة البحث عن القضايا
+  window.location.href = 'index.html';
 });
 </script>
 </body>
