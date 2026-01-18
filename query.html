@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== CSS ===== */
 *,
 *::before,
 *::after {
@@ -68,7 +67,6 @@ input {
 }
 .glass-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
 
-/* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -92,7 +90,6 @@ input {
 .modal-box h3 { color: #c8a44d; margin-bottom: 15px; }
 .modal-box input { width: 100%; margin-bottom: 15px; }
 
-/* ===== Close Button ===== */
 .close-modal {
   position: absolute;
   top: 10px;
@@ -107,7 +104,6 @@ input {
 }
 .close-modal:hover { color: #ff5555; background: rgba(255,255,255,0.15); transform: scale(1.2); }
 
-/* ===== Toast Error ===== */
 #errorToast {
   position: fixed;
   bottom: 30px;
@@ -122,7 +118,6 @@ input {
   z-index: 2000;
 }
 
-/* Animation */
 @keyframes scaleIn {
   from { transform: scale(0.85); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
@@ -150,7 +145,6 @@ input {
   <button type="button" id="goHomeBtn" class="glass-btn" style="margin-top:20px; width: 100%;">العودة للصفحة الرئيسية 🏠</button>
 </div>
 
-<!-- نافذة الكود السري -->
 <div id="adminModal" class="modal-overlay">
   <div class="modal-box">
     <span id="closeModal" class="close-modal">✖</span>
@@ -160,7 +154,6 @@ input {
   </div>
 </div>
 
-<!-- إشعار الخطأ -->
 <div id="errorToast">❌ الكود السري غير صحيح</div>
 
 <script type="module">
@@ -181,11 +174,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ===== Form Elements =====
 const form = document.getElementById("queryForm");
 const resultBox = document.getElementById("resultBox");
 
-// ===== Search Function =====
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -198,42 +189,22 @@ form.addEventListener("submit", async (e) => {
   resultBox.innerHTML = "⏳ جاري البحث...";
 
   try {
-const q = query(
-  collection(db, "cases"),
-  where("fullName", "==", fullName),
-  where("nationalID", "==", nationalID),
-  where("caseNumber", "==", caseNumber),
-  where("caseYear", "==", caseYear)
-);
+    const q = query(
+      collection(db, "cases"),
+      where("fullName", "==", fullName),
+      where("nationalID", "==", nationalID),
+      where("caseNumber", "==", caseNumber),
+      where("caseYear", "==", caseYear)
+    );
 
-const snapshot = await getDocs(q);
+    const snapshot = await getDocs(q);
 
-if (snapshot.empty) {
-  resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
-  return;
-}
-
-const data = snapshot.docs[0].data();
-
-resultBox.style.display = "flex";
-resultBox.innerHTML = `
-  <div class="result-row">
-    <span>رقم القضية: ${data.caseNumber}</span>
-    <span>سنة القضية: ${data.caseYear}</span>
-  </div>
-  <div>اسم الموكل الرباعي: ${data.fullName}</div>
-  <div>الرقم القومي: ${data.nationalID}</div>
-  <div>نوع القضية: ${data.caseType}</div>
-  <div>آخر إجراء تم: ${data.lastAction}</div>
-  <div>تاريخ آخر تحديث: ${data.lastUpdate}</div>
-`;
-
-    const data = snapshot.docs[0].data();
-
-    if (data.caseNumber !== caseNumber || data.caseYear !== caseYear) {
-      resultBox.innerHTML = `<div class="error">لم يتم الاستدلال على أي معلومات. الرجاء التأكد من رقم الدعوى.</div>`;
+    if (snapshot.empty) {
+      resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
       return;
     }
+
+    const data = snapshot.docs[0].data();
 
     resultBox.style.display = "flex";
     resultBox.innerHTML = `
@@ -283,7 +254,6 @@ modal.addEventListener("click", (e) => {
 
 closeModal.addEventListener("click", () => modal.style.display = "none");
 
-// ===== Go Home Button =====
 document.getElementById('goHomeBtn').addEventListener('click', () => {
   window.location.href = 'index.html';
 });
