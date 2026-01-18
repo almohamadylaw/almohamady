@@ -126,9 +126,6 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
 <script src="cases.js"></script>
 <script>
 let cases = []; // مصفوفة لتخزين القضايا
-
-// جلب البيانات من localStorage
-let cases = [];
 const storedCases = localStorage.getItem('casesData');
 if(storedCases){
   cases = JSON.parse(storedCases);
