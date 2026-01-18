@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&display=swap" rel="stylesheet">
 
 <style>
-/* نفس CSS القديم */
+/* ===== CSS ===== */
 *,
 *::before,
 *::after {
@@ -20,17 +20,54 @@ body {
   background-color: #172630;
   color: #fff;
 }
-.container { max-width: 800px; width: 100%; margin: 50px auto; padding: 20px; background-color: #10243b; border: 2px solid #c8a44d; border-radius: 15px; overflow: hidden; }
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #10243b;
+  border: 2px solid #c8a44d;
+  border-radius: 15px;
+  overflow: hidden;
+}
 h2 { text-align: center; color: #c8a44d; }
 form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; background-color: #172630; color: #fff; font-size: 1rem; text-align: right; direction: rtl; }
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #c8a44d;
+  background-color: #172630;
+  color: #fff;
+  font-size: 1rem;
+  text-align: right;
+  direction: rtl;
+}
 .case-row { display: flex; gap: 10px; width: 100%; }
 .case-row input { flex: 1; width: 100%; min-width: 0; }
 .result-row { display: flex; justify-content: space-between; background-color: #172630; padding: 10px; border-radius: 8px; }
-#resultBox { margin-top: 30px; padding: 20px; background-color: #1f3040; border-radius: 12px; display: none; flex-direction: column; gap: 10px; }
+#resultBox {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #1f3040;
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
 .error { color: #ff5555; font-weight: bold; }
-.glass-btn { padding: 12px; border: 2px solid rgba(200, 164, 77, 0.7); border-radius: 12px; background: rgba(255, 255, 255, 0.1); color: #c8a44d; font-weight: bold; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.3s ease; }
+.glass-btn {
+  padding: 12px;
+  border: 2px solid rgba(200, 164, 77, 0.7);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #c8a44d;
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
 .glass-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
+
 /* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
@@ -41,7 +78,6 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
   justify-content: center;
   z-index: 1000;
 }
-
 .modal-box {
   background: #10243b;
   border: 2px solid #c8a44d;
@@ -51,17 +87,25 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
   max-width: 350px;
   text-align: center;
   animation: scaleIn 0.3s ease;
+  position: relative;
 }
+.modal-box h3 { color: #c8a44d; margin-bottom: 15px; }
+.modal-box input { width: 100%; margin-bottom: 15px; }
 
-.modal-box h3 {
+/* ===== Close Button ===== */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   color: #c8a44d;
-  margin-bottom: 15px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.05);
+  padding: 2px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
-
-.modal-box input {
-  width: 100%;
-  margin-bottom: 15px;
-}
+.close-modal:hover { color: #ff5555; background: rgba(255,255,255,0.15); transform: scale(1.2); }
 
 /* ===== Toast Error ===== */
 #errorToast {
@@ -83,24 +127,6 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
   from { transform: scale(0.85); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-.close-modal {
-  position: absolute; /* داخل الصندوق */
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: #c8a44d;
-  cursor: pointer;
-  background: rgba(255,255,255,0.05);
-  padding: 2px 8px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.close-modal:hover {
-  color: #ff5555;
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.2);
-}
 </style>
 </head>
 <body>
@@ -119,77 +145,15 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
   </form>
 
   <div id="resultBox"></div>
-<button id="openAdminModal" class="glass-btn" style="margin-top:20px; width: 100%;">🔑 دخول الإدارة</button>
+
+  <button id="openAdminModal" class="glass-btn" style="margin-top:20px; width: 100%;">🔑 دخول الإدارة</button>
   <button type="button" id="goHomeBtn" class="glass-btn" style="margin-top:20px; width: 100%;">العودة للصفحة الرئيسية 🏠</button>
 </div>
 
-<script src="cases.js"></script>
-<script>
-let cases = []; // مصفوفة لتخزين القضايا
-const storedCases = localStorage.getItem('casesData');
-if(storedCases){
-  cases = JSON.parse(storedCases);
-  console.log('تم تحميل بيانات القضايا من localStorage:', cases);
-} else {
-  // لو عايز، ممكن تجيب من GitHub كنسخة احتياطية
-  fetch('cases.json')
-    .then(response => response.json())
-    .then(data => {
-      cases = data;
-      console.log('تم تحميل بيانات القضايا من GitHub:', cases);
-    })
-    .catch(err => console.error('حدث خطأ في تحميل البيانات:', err));
-};
-document.getElementById("queryForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  
-  const fullName = document.getElementById("fullName").value.trim();
-  const nationalID = document.getElementById("nationalID").value.trim();
-  const caseNumber = document.getElementById("caseNumber").value.trim();
-  const caseYear = document.getElementById("caseYear").value.trim();
-  const resultBox = document.getElementById("resultBox");
-  
-  const found = cases.find(c => c.fullName === fullName && c.nationalID === nationalID);
-  
-  if(!found){
-    const existsNationalID = cases.find(c => c.nationalID === nationalID);
-    resultBox.innerHTML = existsNationalID
-      ? `<div class="error">المعلومات المدخلة غير صحيحة.</div>`
-      : `<div class="error">عفوا. الخدمة غير متوفرة للرقم القومي هذا.</div>`;
-    resultBox.style.display = "block";
-    return;
-  }
-  
-  if(found.caseNumber !== caseNumber || found.caseYear !== caseYear){
-    resultBox.innerHTML = `<div class="error">لم يتم الاستدلال على أي معلومات. الرجاء التأكد من رقم الدعوى.</div>`;
-    resultBox.style.display = "block";
-    return;
-  }
-  
-  resultBox.style.display = "flex";
-  resultBox.innerHTML = `
-    <div class="result-row">
-      <span>رقم القضية: ${found.caseNumber}</span>
-      <span>سنة القضية: ${found.caseYear}</span>
-    </div>
-    <div>اسم الموكل الرباعي: ${found.fullName}</div>
-    <div>الرقم القومي: ${found.nationalID}</div>
-    <div>نوع القضية: ${found.caseType}</div>
-    <div>آخر إجراء تم: ${found.lastAction}</div>
-    <div>تاريخ آخر تحديث: ${found.lastUpdate}</div>
-  `;
-});
-
-document.getElementById('goHomeBtn').addEventListener('click', () => {
-  window.location.href = 'index.html'; 
-});
-</script>
 <!-- نافذة الكود السري -->
 <div id="adminModal" class="modal-overlay">
-  <div class="modal-box" style="position:relative;">
-    <!-- ✖ داخل الصندوق -->
+  <div class="modal-box">
     <span id="closeModal" class="close-modal">✖</span>
-
     <h3>الدخول للوحة الإدارة</h3>
     <input type="password" id="secretInput" placeholder="ادخل الكود السري">
     <button id="checkSecret" class="glass-btn">دخول</button>
@@ -198,50 +162,115 @@ document.getElementById('goHomeBtn').addEventListener('click', () => {
 
 <!-- إشعار الخطأ -->
 <div id="errorToast">❌ الكود السري غير صحيح</div>
-<script>
-const SECRET_CODE = "482002";
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// ===== Firebase Configuration =====
+const firebaseConfig = {
+  apiKey: "AIzaSyBjtn7LIv2nIuA18aL8LgzZINKrbDSW0Q0",
+  authDomain: "el-mohamady-cases.firebaseapp.com",
+  projectId: "el-mohamady-cases",
+  storageBucket: "el-mohamady-cases.firebasestorage.app",
+  messagingSenderId: "877053136418",
+  appId: "1:877053136418:web:9be069bfdbedf70239447b"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ===== Form Elements =====
+const form = document.getElementById("queryForm");
+const resultBox = document.getElementById("resultBox");
+
+// ===== Search Function =====
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fullName = document.getElementById("fullName").value.trim();
+  const nationalID = document.getElementById("nationalID").value.trim();
+  const caseNumber = document.getElementById("caseNumber").value.trim();
+  const caseYear = document.getElementById("caseYear").value.trim();
+
+  resultBox.style.display = "block";
+  resultBox.innerHTML = "⏳ جاري البحث...";
+
+  try {
+    const q = query(
+      collection(db, "cases"),
+      where("fullName", "==", fullName),
+      where("nationalID", "==", nationalID)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
+      return;
+    }
+
+    const data = snapshot.docs[0].data();
+
+    if (data.caseNumber !== caseNumber || data.caseYear !== caseYear) {
+      resultBox.innerHTML = `<div class="error">لم يتم الاستدلال على أي معلومات. الرجاء التأكد من رقم الدعوى.</div>`;
+      return;
+    }
+
+    resultBox.style.display = "flex";
+    resultBox.innerHTML = `
+      <div class="result-row">
+        <span>رقم القضية: ${data.caseNumber}</span>
+        <span>سنة القضية: ${data.caseYear}</span>
+      </div>
+      <div>اسم الموكل الرباعي: ${data.fullName}</div>
+      <div>الرقم القومي: ${data.nationalID}</div>
+      <div>نوع القضية: ${data.caseType}</div>
+      <div>آخر إجراء تم: ${data.lastAction}</div>
+      <div>تاريخ آخر تحديث: ${data.lastUpdate}</div>
+    `;
+  } catch (err) {
+    console.error(err);
+    resultBox.innerHTML = `<div class="error">حدث خطأ أثناء البحث، الرجاء المحاولة لاحقًا.</div>`;
+  }
+});
+
+// ===== Admin Modal =====
+const SECRET_CODE = "482002";
 const modal = document.getElementById("adminModal");
 const openBtn = document.getElementById("openAdminModal");
 const checkBtn = document.getElementById("checkSecret");
 const input = document.getElementById("secretInput");
 const errorToast = document.getElementById("errorToast");
+const closeModal = document.getElementById("closeModal");
 
-// فتح النافذة عند الضغط على الزر
 openBtn.addEventListener("click", () => {
   modal.style.display = "flex";
   input.value = "";
   input.focus();
 });
 
-// التحقق من الكود
 checkBtn.addEventListener("click", () => {
   if(input.value === SECRET_CODE){
     window.location.href = "admin.html";
   } else {
-    showError();
+    errorToast.style.display = "block";
+    setTimeout(() => { errorToast.style.display = "none"; }, 3000);
   }
 });
 
-// إغلاق النافذة عند الضغط خارج الصندوق
 modal.addEventListener("click", (e) => {
-  if(e.target === modal){
-    modal.style.display = "none";
-  }
+  if(e.target === modal) modal.style.display = "none";
 });
 
-// عرض رسالة الخطأ لفترة قصيرة
-function showError(){
-  errorToast.style.display = "block";
-  setTimeout(() => {
-    errorToast.style.display = "none";
-  }, 3000);
-}
-const closeModal = document.getElementById("closeModal");
+closeModal.addEventListener("click", () => modal.style.display = "none");
 
-closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
+// ===== Go Home Button =====
+document.getElementById('goHomeBtn').addEventListener('click', () => {
+  window.location.href = 'index.html';
 });
 </script>
+
 </body>
 </html>
