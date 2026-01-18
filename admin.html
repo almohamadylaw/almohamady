@@ -6,20 +6,33 @@
 <title>لوحة إدارة القضايا</title>
 <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&display=swap" rel="stylesheet">
 <style>
-body { font-family: "Reem Kufi Ink", sans-serif; background-color: #172630; color: #fff; margin:0; padding:20px; }
-.container { max-width:600px; margin:auto; background-color:#10243b; padding:20px; border-radius:15px; border:2px solid #c8a44d; }
-h2 { text-align:center; color:#c8a44d; }
-form { display:flex; flex-direction:column; gap:12px; margin-top:20px; }
-input { padding:10px; border-radius:10px; border:1px solid #c8a44d; background-color:#172630; color:#fff; font-size:1rem; text-align:right; }
-button { padding:12px; border-radius:12px; border:2px solid rgba(200,164,77,0.7); background:rgba(255,255,255,0.1); color:#c8a44d; font-weight:bold; cursor:pointer; backdrop-filter:blur(8px); transition:all 0.3s ease; }
+body {
+  font-family: "Reem Kufi Ink", sans-serif;
+  background-color: #172630;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  background-color: #10243b;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #c8a44d;
+}
+h2 { text-align: center; color: #c8a44d; }
+form { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+input { padding: 10px; border-radius: 10px; border: 1px solid #c8a44d; background-color: #172630; color: #fff; font-size: 1rem; text-align: right; }
+button { padding: 12px; border-radius: 12px; border: 2px solid rgba(200, 164, 77, 0.7); background: rgba(255, 255, 255, 0.1); color: #c8a44d; font-weight: bold; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.3s ease; }
 button:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
-#message { margin-top:15px; font-weight:bold; color:#c8a44d; }
+#message { margin-top: 15px; font-weight: bold; color: #c8a44d; }
 </style>
 </head>
 <body>
-
 <div class="container">
   <h2>لوحة إدارة القضايا ⚖️</h2>
+  
   <form id="adminForm">
     <input type="text" id="fullName" placeholder="الاسم الرباعي" required>
     <input type="tel" id="nationalID" placeholder="الرقم القومي" required>
@@ -30,17 +43,18 @@ button:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
     <input type="date" id="lastUpdate" placeholder="تاريخ آخر تحديث" required>
     <button type="submit">إضافة / تحديث القضية</button>
   </form>
-  <div id="message"></div>
-</div>
-
+  
+<div id="message"></div>
+<button id="goHomeAdminBtn">العودة للصفحة الرئيسية 🏠</button>
 <script>
+// فورم الإدارة
 const form = document.getElementById('adminForm');
 const message = document.getElementById('message');
 
 form.addEventListener('submit', function(e){
   e.preventDefault();
 
-  // قراءة القيم من الفورم
+  // قراءة القيم
   const newCase = {
     fullName: document.getElementById('fullName').value.trim(),
     nationalID: document.getElementById('nationalID').value.trim(),
@@ -51,11 +65,11 @@ form.addEventListener('submit', function(e){
     lastUpdate: document.getElementById('lastUpdate').value
   };
 
-  // تحميل البيانات السابقة من localStorage
+  // تحميل القضايا الموجودة من localStorage
   let storedCases = localStorage.getItem('casesData');
   storedCases = storedCases ? JSON.parse(storedCases) : [];
 
-  // التحقق إذا القضية موجودة مسبقًا لتحديثها
+  // البحث إذا القضية موجودة مسبقًا
   const index = storedCases.findIndex(c => c.nationalID === newCase.nationalID && c.caseNumber === newCase.caseNumber && c.caseYear === newCase.caseYear);
   if(index > -1){
     storedCases[index] = newCase; // تحديث
@@ -71,7 +85,9 @@ form.addEventListener('submit', function(e){
   // إعادة ضبط الفورم
   form.reset();
 });
+document.getElementById('goHomeAdminBtn').addEventListener('click', () => {
+  window.location.href = 'index.html'; // رابط صفحة البحث عن القضايا
+});
 </script>
-
 </body>
 </html>
