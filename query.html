@@ -130,26 +130,7 @@ input {
 
 <script>
 // بيانات القضايا المخزنة ستاتيك
-const cases = [
-  {
-    fullName: "أحمد محمد علي حسن",
-    nationalID: "12345678901234",
-    caseNumber: "101",
-    caseYear: "2025",
-    caseType: "مدنية",
-    lastAction: "جلسة استماع",
-    lastUpdate: "2025-12-20"
-  },
-  {
-    fullName: "سارة علي محمد إبراهيم",
-    nationalID: "98765432109876",
-    caseNumber: "102",
-    caseYear: "2025",
-    caseType: "جنائية",
-    lastAction: "استدعاء المتهم",
-    lastUpdate: "2025-12-18"
-  }
-];
+const cases = casesData;
 
 document.getElementById("queryForm").addEventListener("submit", function(e){
   e.preventDefault();
@@ -198,5 +179,6 @@ document.getElementById('goHomeBtn').addEventListener('click', () => {
 });
 </script>
 
+<script src="cases.js"></script>
 </body>
 </html>
