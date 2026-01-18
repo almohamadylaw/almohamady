@@ -131,7 +131,7 @@ input {
 <script>
 // تحميل البيانات من localStorage
 let cases = localStorage.getItem('casesData');
-cases = cases ? JSON.parse(cases) : [];
+cases = cases ? JSON.parse(cases) : casesData; // لو localStorage فاضي، استخدم البيانات الثابتة
 document.getElementById("queryForm").addEventListener("submit", function(e){
   e.preventDefault();
   
