@@ -129,9 +129,9 @@ input {
 </div>
 <script src="cases.js"></script>
 <script>
-// بيانات القضايا المخزنة ستاتيك
-const cases = casesData;
-
+// تحميل البيانات من localStorage
+let cases = localStorage.getItem('casesData');
+cases = cases ? JSON.parse(cases) : [];
 document.getElementById("queryForm").addEventListener("submit", function(e){
   e.preventDefault();
   
