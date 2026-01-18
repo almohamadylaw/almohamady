@@ -125,10 +125,18 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
 
 <script src="cases.js"></script>
 <script>
-// 1️⃣ تحميل البيانات من localStorage أولاً
-let cases = localStorage.getItem('casesData');
-cases = cases ? JSON.parse(cases) : casesData; // لو localStorage فاضي، استخدم البيانات الافتراضية
+let cases = []; // مصفوفة لتخزين القضايا
 
+// جلب البيانات من GitHub JSON
+fetch('cases.json')
+  .then(response => response.json())
+  .then(data => {
+    cases = data;
+    console.log('تم تحميل بيانات القضايا من GitHub:', cases);
+  })
+  .catch(err => {
+    console.error('حدث خطأ في تحميل البيانات:', err);
+  });
 document.getElementById("queryForm").addEventListener("submit", function(e){
   e.preventDefault();
   
