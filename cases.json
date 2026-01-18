@@ -1,0 +1,20 @@
+[
+  {
+    "fullName": "محمد عبدالنبي محمد علي",
+    "nationalID": "01029207323",
+    "caseNumber": "101",
+    "caseYear": "2025",
+    "caseType": "جنايات",
+    "lastAction": "للحكم",
+    "lastUpdate": "2025-12-20"
+  },
+  {
+    "fullName": "أحمد مصطفى حسن",
+    "nationalID": "01234567890",
+    "caseNumber": "102",
+    "caseYear": "2025",
+    "caseType": "مدني",
+    "lastAction": "جلسة أولى",
+    "lastUpdate": "2025-12-18"
+  }
+]
