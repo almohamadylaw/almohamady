@@ -158,7 +158,7 @@ input {
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ===== Firebase Configuration =====
 const firebaseConfig = {
@@ -177,6 +177,7 @@ const db = getFirestore(app);
 const form = document.getElementById("queryForm");
 const resultBox = document.getElementById("resultBox");
 
+// ===== البحث باستخدام caseId فقط =====
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -185,28 +186,22 @@ form.addEventListener("submit", async (e) => {
   const caseNumber = document.getElementById("caseNumber").value.trim();
   const caseYear = document.getElementById("caseYear").value.trim();
 
+  const caseId = `${nationalID}_${caseNumber}_${caseYear}`;
+
   resultBox.style.display = "block";
   resultBox.innerHTML = "⏳ جاري البحث...";
 
   try {
-    const q = query(
-      collection(db, "cases"),
-      where("fullName", "==", fullName),
-      where("nationalID", "==", nationalID),
-      where("caseNumber", "==", caseNumber),
-      where("caseYear", "==", caseYear)
-    );
+    const caseRef = doc(db, "cases", caseId);
+    const snap = await getDoc(caseRef);
 
-    const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
+    if (!snap.exists()) {
       resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
       return;
     }
 
-    const data = snapshot.docs[0].data();
+    const data = snap.data();
 
-    resultBox.style.display = "flex";
     resultBox.innerHTML = `
       <div class="result-row">
         <span>رقم القضية: ${data.caseNumber}</span>
