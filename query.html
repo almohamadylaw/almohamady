@@ -127,16 +127,22 @@ input { padding: 12px; border-radius: 10px; border: 1px solid #c8a44d; backgroun
 <script>
 let cases = []; // مصفوفة لتخزين القضايا
 
-// جلب البيانات من GitHub JSON
-fetch('cases.json')
-  .then(response => response.json())
-  .then(data => {
-    cases = data;
-    console.log('تم تحميل بيانات القضايا من GitHub:', cases);
-  })
-  .catch(err => {
-    console.error('حدث خطأ في تحميل البيانات:', err);
-  });
+// جلب البيانات من localStorage
+let cases = [];
+const storedCases = localStorage.getItem('casesData');
+if(storedCases){
+  cases = JSON.parse(storedCases);
+  console.log('تم تحميل بيانات القضايا من localStorage:', cases);
+} else {
+  // لو عايز، ممكن تجيب من GitHub كنسخة احتياطية
+  fetch('cases.json')
+    .then(response => response.json())
+    .then(data => {
+      cases = data;
+      console.log('تم تحميل بيانات القضايا من GitHub:', cases);
+    })
+    .catch(err => console.error('حدث خطأ في تحميل البيانات:', err));
+};
 document.getElementById("queryForm").addEventListener("submit", function(e){
   e.preventDefault();
   
