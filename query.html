@@ -198,18 +198,35 @@ form.addEventListener("submit", async (e) => {
   resultBox.innerHTML = "⏳ جاري البحث...";
 
   try {
-    const q = query(
-      collection(db, "cases"),
-      where("fullName", "==", fullName),
-      where("nationalID", "==", nationalID)
-    );
+const q = query(
+  collection(db, "cases"),
+  where("fullName", "==", fullName),
+  where("nationalID", "==", nationalID),
+  where("caseNumber", "==", caseNumber),
+  where("caseYear", "==", caseYear)
+);
 
-    const snapshot = await getDocs(q);
+const snapshot = await getDocs(q);
 
-    if (snapshot.empty) {
-      resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
-      return;
-    }
+if (snapshot.empty) {
+  resultBox.innerHTML = `<div class="error">عفوا. لا توجد بيانات مطابقة.</div>`;
+  return;
+}
+
+const data = snapshot.docs[0].data();
+
+resultBox.style.display = "flex";
+resultBox.innerHTML = `
+  <div class="result-row">
+    <span>رقم القضية: ${data.caseNumber}</span>
+    <span>سنة القضية: ${data.caseYear}</span>
+  </div>
+  <div>اسم الموكل الرباعي: ${data.fullName}</div>
+  <div>الرقم القومي: ${data.nationalID}</div>
+  <div>نوع القضية: ${data.caseType}</div>
+  <div>آخر إجراء تم: ${data.lastAction}</div>
+  <div>تاريخ آخر تحديث: ${data.lastUpdate}</div>
+`;
 
     const data = snapshot.docs[0].data();
 
